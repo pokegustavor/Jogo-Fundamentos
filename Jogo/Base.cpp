@@ -1,15 +1,10 @@
 #include "Base.h"
-class Base
+Base::Base()
 {
-protected:
-	int id;
-public:
-	Base() {}
-	~Base() {}
-	virtual void executar() = 0;
-	virtual void imprimir() = 0;
-	const int getID()
-	{
-		return id;
-	}
-};
+	id = -1;
+}
+Base::~Base() {}
+const int Base::getID()
+{
+	return id;
+}

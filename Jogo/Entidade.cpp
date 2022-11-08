@@ -1,8 +1,9 @@
 #include "Entidade.h"
-class Entidade
+Entidade::Entidade() 
 {
-public:
-	Entidade() {}
-	~Entidade() {}
-	virtual void executar() = 0;
-};
+	id = -1;
+}
+Entidade::~Entidade()
+{
+
+}
