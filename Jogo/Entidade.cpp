@@ -1,9 +1,11 @@
 #include "Entidade.h"
-Entidade::Entidade() 
+Entidades::Entidade::Entidade(int X,int Y)
 {
 	id = -1;
+	x = X;
+	y = Y;
 }
-Entidade::~Entidade()
+Entidades::Entidade::~Entidade()
 {
 
 }

@@ -1,7 +1,5 @@
 #include "Jogo.h"
 #include "SFML/Graphics.hpp"
-#include "SFML/Window.hpp"
-#include "SFML/Graphics/Color.hpp"
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");

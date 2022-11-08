@@ -136,6 +136,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Jogo.h" />
+    <ClInclude Include="Obstaculo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Base.cpp">
@@ -147,6 +148,7 @@
     </ClCompile>
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Jogo.cpp" />
+    <ClCompile Include="Obstaculo.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
