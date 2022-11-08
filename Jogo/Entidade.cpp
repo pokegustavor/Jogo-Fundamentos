@@ -1,9 +1,6 @@
 #include "Entidade.h"
-class Entidade : public Base
+class Entidade
 {
-protected:
-	int x;
-	int y;
 public:
 	Entidade() {}
 	~Entidade() {}
