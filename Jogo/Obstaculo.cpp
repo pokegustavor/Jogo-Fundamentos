@@ -1,11 +1,11 @@
 #include "Obstaculo.h"
 
-Obstaculos::Obstaculo::Obstaculo()
+Entidades::Obstaculos::Obstaculo::Obstaculo()
 {
 	Perigoso = false;
 	Danificavel = false;
 }
 
-Obstaculos::Obstaculo::~Obstaculo()
+Entidades::Obstaculos::Obstaculo::~Obstaculo()
 {
 }

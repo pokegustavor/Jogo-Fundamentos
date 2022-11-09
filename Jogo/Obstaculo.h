@@ -1,14 +1,16 @@
 #pragma once
-namespace Obstaculos
+namespace Entidades
 {
-	class Obstaculo
+	namespace Obstaculos
 	{
-	protected:
-		bool Danificavel;
-		bool Perigoso;
-	public:
-		Obstaculo();
-		~Obstaculo();
-	};
+		class Obstaculo
+		{
+		protected:
+			bool Danificavel;
+			bool Perigoso;
+		public:
+			Obstaculo();
+			~Obstaculo();
+		};
+	}
 }
-

@@ -136,6 +136,7 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Jogo.h" />
+    <ClInclude Include="Lista.h" />
     <ClInclude Include="Obstaculo.h" />
   </ItemGroup>
   <ItemGroup>
