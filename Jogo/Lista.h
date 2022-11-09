@@ -23,8 +23,8 @@ namespace Listas
 				return pInfo;
 			}
 		};
-		Elemento<T> pPrimeiro;
-		Elemento<T> pUltimo;
+		Elemento<T>* pPrimeiro;
+		Elemento<T>* pUltimo;
 		int counter;
 	public:
 		Lista();
@@ -37,6 +37,7 @@ namespace Listas
 	{
 		pPrimeiro = nullptr;
 		pUltimo = nullptr;
+		counter = 0;
 	}
 	template<class T>
 	inline Lista<T>::~Lista()

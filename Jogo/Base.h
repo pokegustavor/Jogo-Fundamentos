@@ -1,8 +1,10 @@
 #pragma once
+#include "SFML/Graphics.hpp"
 class Base
 {
 protected:
 	int id;
+	sf::RectangleShape Visual;
 public:
 	Base();
 	~Base();

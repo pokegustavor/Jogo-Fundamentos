@@ -137,7 +137,9 @@
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Lista.h" />
+    <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="Obstaculo.h" />
+    <ClInclude Include="Personagem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Base.cpp">
@@ -149,7 +151,9 @@
     </ClCompile>
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Jogo.cpp" />
+    <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
+    <ClCompile Include="Personagem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
