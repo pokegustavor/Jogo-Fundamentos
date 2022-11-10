@@ -4,16 +4,16 @@ class Gerenciador_Grafico
 {
 private:
     static Gerenciador_Grafico* _instance;
-public:
-	sf::RenderWindow* Janela;
 	Gerenciador_Grafico()
 	{
-        Janela = nullptr;
+		Janela = nullptr;
 	}
-	~Gerenciador_Grafico() 
+	~Gerenciador_Grafico()
 	{
-		
+
 	}
+public:
+	sf::RenderWindow* Janela;
 	void Iniciar()
 	{
         Janela = new sf::RenderWindow(sf::VideoMode(2000, 500), "Jogo!", sf::Style::Titlebar | sf::Style::Close);

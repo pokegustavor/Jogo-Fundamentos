@@ -2,6 +2,7 @@
 #include "Gerenciador_Grafico.h"
 #include "Jogador.h"
 #include "Soldado.h"
+#include "Gerenciador_Colisoes.h"
 class Jogo
 {
 private:

@@ -3,6 +3,7 @@
 
 Jogo* Jogo::_instance = new Jogo();
 Gerenciador_Grafico* Gerenciador_Grafico::_instance = new Gerenciador_Grafico();
+Gerenciador_Colisoes* Gerenciador_Colisoes::_instance = new Gerenciador_Colisoes();
 int main()
 {
     Gerenciador_Grafico::getInstance()->Iniciar();
@@ -51,6 +52,10 @@ void Jogo::Executar()
         Janela->draw(shape);
         joga->executar();
         solda->executar();
+        if(Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual,solda->Visual))
+        {
+            Janela->close();
+        }
         Janela->display();
     }
 }

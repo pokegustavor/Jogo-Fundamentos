@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="Base.h" />
     <ClInclude Include="Entidade.h" />
+    <ClInclude Include="Gerenciador_Colisoes.h" />
     <ClInclude Include="Gerenciador_Grafico.h" />
     <ClInclude Include="Inimigo.h" />
     <ClInclude Include="Jogador.h" />
