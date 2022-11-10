@@ -47,7 +47,6 @@ void Jogo::Executar()
 
         Janela->clear();
         joga->executar();
-        Janela->draw(joga->Visual);
         Janela->draw(shape);
         Janela->display();
     }
