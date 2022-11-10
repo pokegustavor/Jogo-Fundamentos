@@ -136,12 +136,14 @@
     <ClInclude Include="Base.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Gerenciador_Grafico.h" />
+    <ClInclude Include="Inimigo.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
+    <ClInclude Include="Soldado.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Base.cpp">
@@ -152,11 +154,13 @@
       <AdditionalModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib</AdditionalModuleDependencies>
     </ClCompile>
     <ClCompile Include="Entidade.cpp" />
+    <ClCompile Include="Inimigo.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
+    <ClCompile Include="Soldado.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,6 +13,8 @@ namespace Entidades
 		~Entidade();
 		virtual void executar();
 		virtual void imprimir();
+		int getX();
+		int getY();
 	};
 }
 

@@ -36,6 +36,8 @@ void Jogo::Executar()
     sf::RectangleShape shape(sf::Vector2f(2000.f, 100.f));
     shape.setFillColor(sf::Color::Green);
     shape.setPosition(sf::Vector2f(0.f, 400.f));
+    Soldado* solda = new Soldado();
+    solda->SetAlvo(joga);
     while (Janela->isOpen())
     {
         sf::Event event;
@@ -46,8 +48,9 @@ void Jogo::Executar()
         }
 
         Janela->clear();
-        joga->executar();
         Janela->draw(shape);
+        joga->executar();
+        solda->executar();
         Janela->display();
     }
 }
