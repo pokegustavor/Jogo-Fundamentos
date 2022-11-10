@@ -1,10 +1,11 @@
 #pragma once
 #include "SFML/Graphics.hpp"
+#include "Gerenciador_Grafico.h"
 class Ente
 {
 protected:
 	int id;
-	
+	static Gerenciador_Grafico* grafico;
 public:
 	Ente();
 	~Ente();
