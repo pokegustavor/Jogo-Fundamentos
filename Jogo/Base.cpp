@@ -1,5 +1,5 @@
 #include "Base.h"
-Base::Base():Visual(sf::Vector2f(20.0f,20.0f))
+Base::Base():Visual(sf::Vector2f(500.0f,500.0f))
 {
 	id = -1;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "Base.h"
+#include "Gerenciador_Grafico.h"
 namespace Entidades
 {
 	class Entidade : public Base
@@ -10,7 +11,8 @@ namespace Entidades
 	public:
 		Entidade(int X = 0, int Y = 0);
 		~Entidade();
-		virtual void executar() = 0;
+		virtual void executar();
+		virtual void imprimir();
 	};
 }
 
