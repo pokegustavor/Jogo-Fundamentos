@@ -52,10 +52,10 @@ void Jogo::Executar()
         Janela->draw(shape);
         joga->executar();
         solda->executar();
-        if(Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual,solda->Visual))
+        Janela->display();
+        if (Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual, solda->Visual))
         {
             Janela->close();
         }
-        Janela->display();
     }
 }

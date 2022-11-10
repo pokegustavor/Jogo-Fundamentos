@@ -1,9 +1,9 @@
 #pragma once
-#include "Base.h"
+#include "Ente.h"
 #include "Gerenciador_Grafico.h"
 namespace Entidades
 {
-	class Entidade : public Base
+	class Entidade : public Ente
 	{
 	protected:
 		int x;
