@@ -2,11 +2,9 @@
 #include "SFML/Graphics.hpp"
 
 Jogo* Jogo::_instance = new Jogo();
-Gerenciador_Grafico* Gerenciador_Grafico::_instance = new Gerenciador_Grafico();
 Gerenciador_Colisoes* Gerenciador_Colisoes::_instance = new Gerenciador_Colisoes();
 int main()
 {
-    Gerenciador_Grafico::getInstance()->Iniciar();
     Jogo::getInstance()->Executar();
     return 0;
 }
@@ -15,7 +13,7 @@ Jogo::Jogo()
 {
     nextID = 0;
     joga = new Jogador();
-    
+    menu = new Menu();
 }
 Jogo::~Jogo()
 {
@@ -33,7 +31,8 @@ int Jogo::GetNextFreeID()
 
 void Jogo::Executar()
 {
-    sf::RenderWindow* Janela = Gerenciador_Grafico::getInstance()->Janela;
+    menu->executar();
+    sf::RenderWindow* Janela = menu->getJanela();
     sf::RectangleShape shape(sf::Vector2f(2000.f, 100.f));
     shape.setFillColor(sf::Color::Green);
     shape.setPosition(sf::Vector2f(0.f, 400.f));

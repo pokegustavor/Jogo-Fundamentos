@@ -3,6 +3,8 @@
 #include "Jogador.h"
 #include "Soldado.h"
 #include "Gerenciador_Colisoes.h"
+#include "Ente.h"
+#include "Menu.h"
 class Jogo
 {
 private:
@@ -11,6 +13,7 @@ private:
 	Jogo();
 	~Jogo();
 	Jogador* joga;
+	Menu* menu;
 public:
 	static Jogo* getInstance();
 	int GetNextFreeID();

@@ -11,7 +11,7 @@ namespace Entidades
 	public:
 		Entidade(int X = 0, int Y = 0);
 		~Entidade();
-		virtual void executar();
+		virtual void executar() = 0;
 		virtual void imprimir();
 		int getX();
 		int getY();

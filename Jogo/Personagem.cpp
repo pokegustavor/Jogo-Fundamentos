@@ -17,5 +17,5 @@ void Personagem::executar()
 	{
 		morto = true;
 	}
-	Entidade::executar();
+	imprimir();
 }
