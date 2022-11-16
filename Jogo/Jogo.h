@@ -15,6 +15,7 @@ private:
 	Jogador* joga;
 	Menu* menu;
 public:
+	bool jogando;
 	static Jogo* getInstance();
 	int GetNextFreeID();
 	void Executar();

@@ -14,6 +14,7 @@ Jogo::Jogo()
     nextID = 0;
     joga = new Jogador();
     menu = new Menu();
+    jogando = false;
 }
 Jogo::~Jogo()
 {
@@ -38,23 +39,39 @@ void Jogo::Executar()
     shape.setPosition(sf::Vector2f(0.f, 400.f));
     Soldado* solda = new Soldado();
     solda->SetAlvo(joga);
-    while (Janela->isOpen())
+    while(Janela->isOpen())
     {
-        sf::Event event;
-        while (Janela->pollEvent(event))
+        if (!menu->emFase)
         {
-            if (event.type == sf::Event::Closed)
-                Janela->close();
+            menu->executar();
         }
-
-        Janela->clear();
-        Janela->draw(shape);
-        joga->executar();
-        solda->executar();
-        Janela->display();
-        if (Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual, solda->Visual))
+        else
         {
-            Janela->close();
+            sf::Event event;
+            while (Janela->pollEvent(event))
+            {
+                if (event.type == sf::Event::Closed)
+                    Janela->close();
+            }
+
+            Janela->clear();
+            Janela->draw(shape);
+            joga->executar();
+            solda->executar();
+            Janela->display();
+            if (Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual, solda->Visual))
+            {
+                menu->emFase = false;
+                delete joga;
+                joga = new Jogador();
+                delete solda;
+                solda = new Soldado();
+                solda->SetAlvo(joga);
+            }
         }
     }
+    delete solda;
+    delete joga;
+    delete Janela;
+    delete menu;
 }

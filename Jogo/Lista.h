@@ -1,4 +1,5 @@
 #pragma once
+#include "Iterador.h"
 namespace Listas
 {
 	template <class TL> class Lista
@@ -34,6 +35,10 @@ namespace Listas
 		TL* getItem(int pos);
 		TL* getItemByID(int ID);
 		const int Count();
+		Iterador<TL> getIterator()
+		{
+			return Iterador<TL>(this);
+		}
 	};
 	template<class TL>
 	inline Lista<TL>::Lista()
