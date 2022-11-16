@@ -5,6 +5,7 @@
 #include "Gerenciador_Colisoes.h"
 #include "Ente.h"
 #include "Menu.h"
+#include "Fase.h"
 class Jogo
 {
 private:
@@ -14,6 +15,7 @@ private:
 	~Jogo();
 	Jogador* joga;
 	Menu* menu;
+	Fase* fase;
 public:
 	static Jogo* getInstance();
 	int GetNextFreeID();
