@@ -7,7 +7,7 @@ class Atirador :
 private:
     Projetil* meu_Projetil;
 public:
-    Atirador();
+    Atirador(int X, int Y);
     ~Atirador();
     void executar();
     Projetil* getProjetil();

@@ -1,6 +1,6 @@
 #include "Soldado.h"
 
-Soldado::Soldado():Inimigo(150,80)
+Soldado::Soldado(int X, int Y):Inimigo(X,Y)
 {
     Visual.setSize(sf::Vector2f(20.f, 20.f));
 }

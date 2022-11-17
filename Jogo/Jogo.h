@@ -7,6 +7,7 @@
 #include "Menu.h"
 #include "Atirador.h"
 #include "Projetil.h"
+#include "Fase.h"
 class Jogo
 {
 private:

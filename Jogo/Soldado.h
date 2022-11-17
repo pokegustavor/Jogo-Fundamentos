@@ -4,7 +4,7 @@ class Soldado :
     public Inimigo
 {
 public:
-    Soldado();
+    Soldado(int X, int Y);
     ~Soldado();
     void executar();
 };

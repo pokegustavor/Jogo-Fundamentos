@@ -1,6 +1,6 @@
 #include "Atirador.h"
 
-Atirador::Atirador():Inimigo(250,80)
+Atirador::Atirador(int X, int Y):Inimigo(X,Y)
 {
 	Visual.setSize(sf::Vector2f(20.f, 20.f));
 	meu_Projetil = nullptr;

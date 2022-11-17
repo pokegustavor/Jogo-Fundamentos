@@ -27,6 +27,7 @@ void Projetil::setDirection(int X, int Y)
 
 void Projetil::executar()
 {
+	if (inativo)return;
 	Visual.setFillColor(sf::Color::White);
 	x += direX;
 	y += direY;

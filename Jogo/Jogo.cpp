@@ -37,9 +37,9 @@ void Jogo::Executar()
     sf::RectangleShape shape(sf::Vector2f(2000.f, 100.f));
     shape.setFillColor(sf::Color::Green);
     shape.setPosition(sf::Vector2f(0.f, 400.f));
-    Soldado* solda = new Soldado();
+    Soldado* solda = new Soldado(150,200);
     solda->SetAlvo(joga);
-    Atirador* atira = new Atirador();
+    Atirador* atira = new Atirador(350,150);
     atira->SetAlvo(joga);
     Projetil* projet = nullptr;
     while(Janela->isOpen())
@@ -70,9 +70,9 @@ void Jogo::Executar()
                 delete joga;
                 joga = new Jogador();
                 delete solda;
-                solda = new Soldado();
+                solda = new Soldado(150, 200);
                 solda->SetAlvo(joga);
-                atira = new Atirador();
+                atira = new Atirador(350, 150);
                 atira->SetAlvo(joga);
                 projet = nullptr;
             }

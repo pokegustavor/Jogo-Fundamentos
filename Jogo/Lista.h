@@ -1,7 +1,8 @@
 #pragma once
-#include "Iterador.h"
 namespace Listas
 {
+	template<class Tem>class Iterador;
+	
 	template <class TL> class Lista
 	{
 	private:
@@ -11,9 +12,9 @@ namespace Listas
 			TE* pInfo;
 		public:
 			Elemento<TE>* pProx;
-			Elemento(TE*)
+			Elemento(TE* elemento)
 			{
-				pInfo = TE;
+				pInfo = elemento;
 			}
 			~Elemento()
 			{
@@ -35,10 +36,7 @@ namespace Listas
 		TL* getItem(int pos);
 		TL* getItemByID(int ID);
 		const int Count();
-		Iterador<TL> getIterator()
-		{
-			return Iterador<TL>(this);
-		}
+		Iterador<TL> getIterator();
 	};
 	template<class TL>
 	inline Lista<TL>::Lista()
@@ -141,6 +139,54 @@ namespace Listas
 	inline const int Lista<TL>::Count()
 	{
 		return counter;
+	}
+	
+	template<class Tem>class Iterador
+	{
+	private:
+		long _atual;
+		Lista<Tem>* _lista;
+	public:
+		Iterador()
+		{
+			_atual = 0;
+			_lista = nullptr;
+		};
+		Iterador(Lista<Tem>* lista)
+		{
+			_atual = 0;
+			_lista = lista;
+		};
+		~Iterador() {};
+		void Begin()
+		{
+			_atual = 0;
+		};
+		void Next()
+		{
+			_atual++;
+		}
+		operator Tem* ()
+		{
+			if (_lista != nullptr && !isDone())
+			{
+				return _lista->getItem(_atual);
+			}
+			else
+			{
+				throw std::out_of_range("out of range");
+			}
+		}
+		const bool isDone()
+		{
+			return _atual < _lista->Count();
+		}
+	};
+
+	template<class TL>
+	Iterador<TL> Lista<TL>::getIterator()
+	{
+		return Iterador<TL>(this);
 	}
 }
 

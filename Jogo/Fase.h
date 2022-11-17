@@ -1,7 +1,6 @@
 #pragma once
 #include "Ente.h"
 #include "ListaEntidades.h"
-#include "Iterador.h"
 #include "Jogador.h"
 #include "Soldado.h"
 using namespace Listas;
@@ -16,7 +15,7 @@ public:
 		todasEntis = new ListaEntidades();
 		Jogador* joga = new Jogador();
 		todasEntis->List_Enti->Add(joga);
-		Soldado* solda = new Soldado();
+		Soldado* solda = new Soldado(150,50);
 		solda->SetAlvo(joga);
 		todasEntis->List_Enti->Add(solda);
 	};
