@@ -27,7 +27,7 @@ public:
 	void executar()
 	{
 		Iterador<Entidade>iterator;
-		for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); iterator++)
+		for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); iterator.Next())
 		{
 			Entidade* ente = iterator;
 			ente->executar();

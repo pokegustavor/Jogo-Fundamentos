@@ -39,6 +39,9 @@ void Jogo::Executar()
     shape.setPosition(sf::Vector2f(0.f, 400.f));
     Soldado* solda = new Soldado();
     solda->SetAlvo(joga);
+    Atirador* atira = new Atirador();
+    atira->SetAlvo(joga);
+    Projetil* projet = nullptr;
     while(Janela->isOpen())
     {
         if (!menu->emFase)
@@ -53,13 +56,15 @@ void Jogo::Executar()
                 if (event.type == sf::Event::Closed)
                     Janela->close();
             }
-
             Janela->clear();
             Janela->draw(shape);
             joga->executar();
             solda->executar();
+            atira->executar();
+            projet = atira->getProjetil();
+            projet->executar();
             Janela->display();
-            if (Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual, solda->Visual))
+            if (Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual, solda->Visual) || Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual, atira->Visual) || Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual, projet->Visual))
             {
                 menu->emFase = false;
                 delete joga;
@@ -67,6 +72,9 @@ void Jogo::Executar()
                 delete solda;
                 solda = new Soldado();
                 solda->SetAlvo(joga);
+                atira = new Atirador();
+                atira->SetAlvo(joga);
+                projet = nullptr;
             }
         }
     }
@@ -74,4 +82,5 @@ void Jogo::Executar()
     delete joga;
     delete Janela;
     delete menu;
+    delete atira;
 }

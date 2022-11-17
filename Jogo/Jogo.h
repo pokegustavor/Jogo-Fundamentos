@@ -5,6 +5,8 @@
 #include "Gerenciador_Colisoes.h"
 #include "Ente.h"
 #include "Menu.h"
+#include "Atirador.h"
+#include "Projetil.h"
 class Jogo
 {
 private:

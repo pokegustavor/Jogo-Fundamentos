@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Atirador.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Fase.h" />
@@ -147,9 +148,11 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
+    <ClInclude Include="Projetil.h" />
     <ClInclude Include="Soldado.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Atirador.cpp" />
     <ClCompile Include="Ente.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\pokeg\OneDrive\Documentos\programação\faculdade\Fundamentos da programação\Parte 3\Jogo\SFML-2.5.1\include;C:\Users\pokeg\OneDrive\Documentos\programação\faculdade\Fundamentos da programação\Parte 3\Jogo\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalModuleDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib</AdditionalModuleDependencies>
@@ -163,6 +166,7 @@
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
+    <ClCompile Include="Projetil.cpp" />
     <ClCompile Include="Soldado.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

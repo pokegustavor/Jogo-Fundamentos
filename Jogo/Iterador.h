@@ -29,6 +29,10 @@ namespace Listas
 			_atual++;
 			return temp;
 		};
+		void Next()
+		{
+			_atual++;
+		}
 		operator Tem* ()
 		{
 			if (_lista != nullptr && !isDone)
