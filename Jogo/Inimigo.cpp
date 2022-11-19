@@ -1,16 +1,16 @@
 #include "Inimigo.h"
 
-Inimigo::Inimigo(int X, int Y):Personagem(X,Y)
+Entidades::Personagems::Inimigo::Inimigo(int X, int Y):Personagem(X,Y)
 {
 	Alvo = nullptr;
 	chefao = false;
 }
 
-Inimigo::~Inimigo()
+Entidades::Personagems::Inimigo::~Inimigo()
 {
 }
 
-void Inimigo::SetAlvo(Jogador* joga)
+void Entidades::Personagems::Inimigo::SetAlvo(Jogador* joga)
 {
 	Alvo = joga;
 }

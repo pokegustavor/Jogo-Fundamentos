@@ -1,34 +1,48 @@
 #include "Jogador.h"
 #include <iostream>
-Jogador::Jogador(bool play_um):Personagem(50,50)
+Entidades::Personagems::Jogador::Jogador(bool play_um):Personagem(50,50)
 {
 	jogador_um = play_um;
     Visual.setSize(sf::Vector2f(20, 20));
     Visual.setFillColor(sf::Color::Red);
+    noChao = false;
 }
 
-Jogador::~Jogador()
+Entidades::Personagems::Jogador::~Jogador()
 {
 }
 
-void Jogador::executar()
+void Entidades::Personagems::Jogador::executar()
 {
+    Visual.setFillColor(sf::Color::Blue);
+    Personagem::executar();
+    if (deltaX > 0)deltaX--;
+    if (deltaX < 0)deltaX++;
+    if (deltaY > 0)deltaY--;
+    if (deltaY < 0)deltaY++;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        x += 2;
+        deltaX += 2;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-        x -= 2;
+        deltaX -= 2;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && noChao)
     {
-        y -= 2;
+        deltaY -= 20; //Negativo para cima
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    if (!noChao && deltaY <= 8)
     {
-        y += 2;
+        deltaY+=2;
     }
-    Visual.setFillColor(sf::Color::Blue);
-    Personagem::executar();
+    noChao = false;
+    if (deltaX > 4)deltaX = 4;
+    if (deltaX < -4)deltaX = -4;
 }
+
+void Entidades::Personagems::Jogador::setChao(bool chao)
+{
+    noChao = chao;
+}
+

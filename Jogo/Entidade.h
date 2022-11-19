@@ -8,6 +8,8 @@ namespace Entidades
 	protected:
 		int x;
 		int y;
+		int deltaX;
+		int deltaY;
 	public:
 		Entidade(int X = 0, int Y = 0);
 		~Entidade();
@@ -15,6 +17,12 @@ namespace Entidades
 		virtual void imprimir();
 		int getX();
 		int getY();
+		int getDeltaX();
+		int getDeltaY();
+		void setX(int X);
+		void setY(int Y);
+		void setDeltaX(int X);
+		void setDeltaY(int Y);
 	};
 }
 

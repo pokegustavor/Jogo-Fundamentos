@@ -1,15 +1,17 @@
 #include "Soldado.h"
 
-Soldado::Soldado(int X, int Y):Inimigo(X,Y)
+Entidades::Personagems::Soldado::Soldado(int X, int Y):Inimigo(X,Y)
 {
     Visual.setSize(sf::Vector2f(20.f, 20.f));
+    srand(time(NULL));
+    grau = (rand() % 2) + 1;
 }
 
-Soldado::~Soldado()
+Entidades::Personagems::Soldado::~Soldado()
 {
 }
 
-void Soldado::executar()
+void Entidades::Personagems::Soldado::executar()
 {
     Visual.setFillColor(sf::Color::Red);
     if(Alvo != nullptr)
@@ -32,4 +34,9 @@ void Soldado::executar()
         }
     }
     Personagem::executar();
+}
+
+void Entidades::Personagems::Soldado::Danar(Jogador* alvo)
+{
+    alvo->receberDano(grau);
 }

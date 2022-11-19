@@ -12,9 +12,9 @@ int main()
 Jogo::Jogo()
 {
     nextID = 0;
-    joga = new Jogador();
     menu = new Menu();
     jogando = false;
+    fase = nullptr;
 }
 Jogo::~Jogo()
 {
@@ -34,53 +34,31 @@ void Jogo::Executar()
 {
     menu->executar();
     sf::RenderWindow* Janela = menu->getJanela();
-    sf::RectangleShape shape(sf::Vector2f(2000.f, 100.f));
-    shape.setFillColor(sf::Color::Green);
-    shape.setPosition(sf::Vector2f(0.f, 400.f));
-    Soldado* solda = new Soldado(150,200);
-    solda->SetAlvo(joga);
-    Atirador* atira = new Atirador(350,150);
-    atira->SetAlvo(joga);
-    Projetil* projet = nullptr;
     while(Janela->isOpen())
     {
+        sf::Event event;
+        while (Janela->pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                Janela->close();
+        }
         if (!menu->emFase)
         {
             menu->executar();
         }
         else
         {
-            sf::Event event;
-            while (Janela->pollEvent(event))
+            if(fase == nullptr)
             {
-                if (event.type == sf::Event::Closed)
-                    Janela->close();
+                fase = new Fase1(false);
             }
-            Janela->clear();
-            Janela->draw(shape);
-            joga->executar();
-            solda->executar();
-            atira->executar();
-            projet = atira->getProjetil();
-            projet->executar();
-            Janela->display();
-            if (Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual, solda->Visual) || Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual, atira->Visual) || Gerenciador_Colisoes::getInstance()->Colidindo(joga->Visual, projet->Visual))
+            fase->executar();
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             {
                 menu->emFase = false;
-                delete joga;
-                joga = new Jogador();
-                delete solda;
-                solda = new Soldado(150, 200);
-                solda->SetAlvo(joga);
-                atira = new Atirador(350, 150);
-                atira->SetAlvo(joga);
-                projet = nullptr;
+                delete fase;
+                fase = nullptr;
             }
         }
     }
-    delete solda;
-    delete joga;
-    delete Janela;
-    delete menu;
-    delete atira;
 }

@@ -1,13 +1,7 @@
 #pragma once
 #include "Gerenciador_Grafico.h"
-#include "Jogador.h"
-#include "Soldado.h"
-#include "Gerenciador_Colisoes.h"
-#include "Ente.h"
 #include "Menu.h"
-#include "Atirador.h"
-#include "Projetil.h"
-#include "Fase.h"
+#include "Fase1.h"
 class Jogo
 {
 private:
@@ -15,8 +9,8 @@ private:
 	int nextID;
 	Jogo();
 	~Jogo();
-	Jogador* joga;
 	Menu* menu;
+	Fase* fase;
 public:
 	bool jogando;
 	static Jogo* getInstance();

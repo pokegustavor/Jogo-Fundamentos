@@ -1,17 +1,17 @@
 #include "Atirador.h"
 
-Atirador::Atirador(int X, int Y):Inimigo(X,Y)
+Entidades::Personagems::Atirador::Atirador(int X, int Y):Inimigo(X,Y)
 {
 	Visual.setSize(sf::Vector2f(20.f, 20.f));
 	meu_Projetil = nullptr;
 }
 
-Atirador::~Atirador()
+Entidades::Personagems::Atirador::~Atirador()
 {
 	delete meu_Projetil;
 }
 
-void Atirador::executar()
+void Entidades::Personagems::Atirador::executar()
 {
 	if(meu_Projetil == nullptr && Alvo != nullptr)
 	{
@@ -27,7 +27,12 @@ void Atirador::executar()
 	Personagem::executar();
 }
 
-Projetil* Atirador::getProjetil()
+Entidades::Projetil* Entidades::Personagems::Atirador::getProjetil()
 {
 	return meu_Projetil;
+}
+
+void Entidades::Personagems::Atirador::Danar(Jogador* alvo)
+{
+	alvo->receberDano(1);
 }

@@ -1,7 +1,7 @@
 #include "Projetil.h"
 
 
-Projetil::Projetil(int posX, int posY, int DireX, int DireY) :Entidade(posX, posY), velocidade(20)
+Entidades::Projetil::Projetil(int posX, int posY, int DireX, int DireY) :Entidade(posX, posY), velocidade(20)
 {
 	Visual.setSize(sf::Vector2f(5.f, 5.f));
 	inativo = false;
@@ -9,23 +9,23 @@ Projetil::Projetil(int posX, int posY, int DireX, int DireY) :Entidade(posX, pos
 	direY = DireY/velocidade;
 }
 
-Projetil::~Projetil()
+Entidades::Projetil::~Projetil()
 {
 }
 
-void Projetil::setPostion(int X, int Y)
+void Entidades::Projetil::setPostion(int X, int Y)
 {
 	x = X;
 	y = Y;
 }
 
-void Projetil::setDirection(int X, int Y)
+void Entidades::Projetil::setDirection(int X, int Y)
 {
 	direX = X/velocidade;
 	direY = Y/velocidade;
 }
 
-void Projetil::executar()
+void Entidades::Projetil::executar()
 {
 	if (inativo)return;
 	Visual.setFillColor(sf::Color::White);
@@ -35,12 +35,12 @@ void Projetil::executar()
 	imprimir();
 }
 
-void Projetil::setInativo(bool inatividade)
+void Entidades::Projetil::setInativo(bool inatividade)
 {
 	inativo = inatividade;
 }
 
-bool Projetil::getInativo()
+bool Entidades::Projetil::getInativo()
 {
 	return inativo;
 }

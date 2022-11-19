@@ -179,7 +179,7 @@ namespace Listas
 		}
 		const bool isDone()
 		{
-			return _atual < _lista->Count();
+			return _atual >= _lista->Count();
 		}
 	};
 
