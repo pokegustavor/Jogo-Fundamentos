@@ -33,13 +33,13 @@ public:
 		}
 		if (!holdingMouse)
 		{
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition(*grafico->Janela).x > 175.0f && sf::Mouse::getPosition(*grafico->Janela).x < 675.0f && sf::Mouse::getPosition(*grafico->Janela).y > 200.0f && sf::Mouse::getPosition(*grafico->Janela).y < 275.0f)
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition(*grafico->Janela).x > 360.0f && sf::Mouse::getPosition(*grafico->Janela).x < 860.0f && sf::Mouse::getPosition(*grafico->Janela).y > 200.0f && sf::Mouse::getPosition(*grafico->Janela).y < 275.0f)
 			{
 				//Começar Jogo
 				holdingMouse = true;
 				emFase = true;
 			}
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition(*grafico->Janela).x > 175.0f && sf::Mouse::getPosition(*grafico->Janela).x < 675.0f && sf::Mouse::getPosition(*grafico->Janela).y > 400.0f && sf::Mouse::getPosition(*grafico->Janela).y < 475.0f)
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition(*grafico->Janela).x > 360.0f && sf::Mouse::getPosition(*grafico->Janela).x < 860.0f && sf::Mouse::getPosition(*grafico->Janela).y > 400.0f && sf::Mouse::getPosition(*grafico->Janela).y < 475.0f)
 			{
 				//Sair do jogo
 				holdingMouse = true;
@@ -76,25 +76,29 @@ public:
 		switch (Menu_Atual)
 		{
 		case 0:
+			//Titulo
 			title.setOutlineColor(sf::Color::Red);
 			title.setFillColor(sf::Color::Red);
-			title.setPosition(sf::Vector2f(300.0f, 50.0f));
+			title.setPosition(sf::Vector2f(510.0f, 50.0f));
 			grafico->Janela->draw(title);
 
-			baseButton.setPosition(sf::Vector2f(175.0f, 200.0f));
+			//Play
+			baseButton.setPosition(sf::Vector2f(360.0f, 200.0f));
 			text.setFillColor(sf::Color::Black);
-			text.setPosition(sf::Vector2f(380.0f, 200.0f));
+			text.setPosition(sf::Vector2f(570.0f, 200.0f));
 			grafico->Janela->draw(baseButton);
 			grafico->Janela->draw(text);
 
-			baseButton.setPosition(sf::Vector2f(175.0f, 300.0f));
-			text.setPosition(sf::Vector2f(340.0f, 300.0f));
+			//Ranking
+			baseButton.setPosition(sf::Vector2f(360.0f, 300.0f));
+			text.setPosition(sf::Vector2f(530.0f, 300.0f));
 			text.setString("Ranking");
 			grafico->Janela->draw(baseButton);
 			grafico->Janela->draw(text);
 
-			baseButton.setPosition(sf::Vector2f(175.0f, 400.0f));
-			text.setPosition(sf::Vector2f(380.0f, 400.0f));
+			//Exit
+			baseButton.setPosition(sf::Vector2f(360.0f, 400.0f));
+			text.setPosition(sf::Vector2f(570.0f, 400.0f));
 			text.setString("Exit");
 			grafico->Janela->draw(baseButton);
 			grafico->Janela->draw(text);

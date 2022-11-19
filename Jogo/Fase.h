@@ -15,7 +15,7 @@ protected:
 	ListaEntidades* todasEntis;
 	Jogador* jogador1;
 	Jogador* jogador2;
-	virtual void GerarSoldados() {};
+	virtual void GerarSoldados() = 0;
 public:
 	Fase(bool dois_joga)
 	{

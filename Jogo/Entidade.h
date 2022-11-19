@@ -15,10 +15,10 @@ namespace Entidades
 		~Entidade();
 		virtual void executar() = 0;
 		virtual void imprimir();
-		int getX();
-		int getY();
-		int getDeltaX();
-		int getDeltaY();
+		const int getX();
+		const int getY();
+		const int getDeltaX();
+		const int getDeltaY();
 		void setX(int X);
 		void setY(int Y);
 		void setDeltaX(int X);

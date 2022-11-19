@@ -32,7 +32,7 @@ void Entidades::Personagems::Jogador::executar()
     {
         deltaY -= 20; //Negativo para cima
     }
-    if (!noChao && deltaY <= 8)
+    if (!noChao && deltaY <= 6)
     {
         deltaY+=2;
     }

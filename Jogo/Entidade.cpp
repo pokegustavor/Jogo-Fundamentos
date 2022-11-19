@@ -18,22 +18,22 @@ void Entidades::Entidade::imprimir()
 	grafico->Janela->draw(Visual);
 }
 
-int Entidades::Entidade::getX()
+const int Entidades::Entidade::getX()
 {
 	return x;
 }
 
-int Entidades::Entidade::getY()
+const int Entidades::Entidade::getY()
 {
 	return y;
 }
 
-int Entidades::Entidade::getDeltaX()
+const int Entidades::Entidade::getDeltaX()
 {
 	return deltaX;
 }
 
-int Entidades::Entidade::getDeltaY()
+const int Entidades::Entidade::getDeltaY()
 {
 	return deltaY;
 }
