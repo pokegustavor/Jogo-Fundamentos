@@ -10,93 +10,96 @@
 using namespace Listas;
 using namespace Entidades::Personagems;
 using namespace Obstaculos;
-class Fase :
-	public Ente
+namespace Fases
 {
-protected:
-	ListaEntidades* todasEntis;
-	Jogador* jogador1;
-	Jogador* jogador2;
-	virtual void GerarSoldados() = 0;
-public:
-	Fase(bool dois_joga)
+	class Fase :
+		public Ente
 	{
-		todasEntis = new ListaEntidades();
-		jogador1 = new Jogador(true);
-		todasEntis->List_Enti->Add(jogador1);
-		if(dois_joga)
+	protected:
+		ListaEntidades* todasEntis;
+		Jogador* jogador1;
+		Jogador* jogador2;
+		virtual void GerarSoldados() = 0;
+	public:
+		Fase(bool dois_joga)
 		{
-			jogador2 = new Jogador(false);
-			todasEntis->List_Enti->Add(jogador2);
-		}
-		else
-		{
-			jogador2 = nullptr;
-		}
-		
-	};
-	~Fase()
-	{
-		delete todasEntis;
-		Gerenciador_Colisoes::getInstance()->Limpar();
-	};
-	void executar()
-	{
-		grafico->Janela->clear();
-		Iterador<Entidade>iterator;
-		for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
-		{
-			Entidade* ente = iterator;
-			ente->executar();
-		}
-		gerenciar_colisoes();
-		imprimir();
-	};
-	void gerenciar_colisoes()
-	{
-		Gerenciador_Colisoes::getInstance()->ColidirInimigos(jogador1);
-		Gerenciador_Colisoes::getInstance()->ColidirObstaculos(jogador1);
-		Gerenciador_Colisoes::getInstance()->ColidirProjetils(jogador1);
-		if(jogador2 != nullptr)
-		{
-			Gerenciador_Colisoes::getInstance()->ColidirInimigos(jogador2);
-			Gerenciador_Colisoes::getInstance()->ColidirObstaculos(jogador2);
-			Gerenciador_Colisoes::getInstance()->ColidirProjetils(jogador2);
-		}
-		Iterador<Entidade>iterator;
-		for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
-		{
-			Entidade* ente = iterator;
-			Inimigo* ini = dynamic_cast<Inimigo*>(ente);
-			if(ini != nullptr)
+			todasEntis = new ListaEntidades();
+			jogador1 = new Jogador(true);
+			todasEntis->List_Enti->Add(jogador1);
+			if (dois_joga)
 			{
-				Gerenciador_Colisoes::getInstance()->ColidirObstaculos(ini);
+				jogador2 = new Jogador(false);
+				todasEntis->List_Enti->Add(jogador2);
 			}
-		}
-	};
-	void imprimir()
-	{
-		sf::Font font;
-		font.loadFromFile("arial.ttf");
-		sf::Text text = sf::Text("Vidas: " + std::to_string(jogador1->getVidas()), font, 80);
-		text.setPosition(sf::Vector2f(20, 20));
-		grafico->Janela->draw(text);
-		grafico->Janela->display();
-	};
-	const bool completa()
-	{
-		if(jogador1->getMorto())return true;
-		Iterador<Entidade>iterator;
-		for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
-		{
-			Entidade* ente = iterator;
-			Inimigo* ini = dynamic_cast<Inimigo*>(ente);
-			if (ini != nullptr && !ini->getMorto())
+			else
 			{
-				return false;
+				jogador2 = nullptr;
 			}
+
+		};
+		~Fase()
+		{
+			delete todasEntis;
+			Gerenciador_Colisoes::getInstance()->Limpar();
+		};
+		void executar()
+		{
+			grafico->Janela->clear();
+			Iterador<Entidade>iterator;
+			for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
+			{
+				Entidade* ente = iterator;
+				ente->executar();
+			}
+			gerenciar_colisoes();
+			imprimir();
+		};
+		void gerenciar_colisoes()
+		{
+			Gerenciador_Colisoes::getInstance()->ColidirInimigos(jogador1);
+			Gerenciador_Colisoes::getInstance()->ColidirObstaculos(jogador1);
+			Gerenciador_Colisoes::getInstance()->ColidirProjetils(jogador1);
+			if (jogador2 != nullptr)
+			{
+				Gerenciador_Colisoes::getInstance()->ColidirInimigos(jogador2);
+				Gerenciador_Colisoes::getInstance()->ColidirObstaculos(jogador2);
+				Gerenciador_Colisoes::getInstance()->ColidirProjetils(jogador2);
+			}
+			Iterador<Entidade>iterator;
+			for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
+			{
+				Entidade* ente = iterator;
+				Inimigo* ini = dynamic_cast<Inimigo*>(ente);
+				if (ini != nullptr)
+				{
+					Gerenciador_Colisoes::getInstance()->ColidirObstaculos(ini);
+				}
+			}
+		};
+		void imprimir()
+		{
+			sf::Font font;
+			font.loadFromFile("arial.ttf");
+			sf::Text text = sf::Text("Vidas: " + std::to_string(jogador1->getVidas()), font, 80);
+			text.setPosition(sf::Vector2f(20, 20));
+			grafico->Janela->draw(text);
+			grafico->Janela->display();
+		};
+		const bool completa()
+		{
+			if (jogador1->getMorto())return true;
+			Iterador<Entidade>iterator;
+			for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
+			{
+				Entidade* ente = iterator;
+				Inimigo* ini = dynamic_cast<Inimigo*>(ente);
+				if (ini != nullptr && !ini->getMorto())
+				{
+					return false;
+				}
+			}
+			return true;
 		}
-		return true;
-	}
-};
+	};
+}
 

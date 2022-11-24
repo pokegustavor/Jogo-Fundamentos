@@ -60,28 +60,30 @@ public:
 			futuro.setPosition(sf::Vector2f(persona->getX() + persona->getDeltaX(), persona->getY() + persona->getDeltaY()));
 			if (Colidindo(futuro, (*iterador)->Visual))//Verifica se existe uma colisão entre a posição futura e o objeto
 			{
-				futuro.setPosition(sf::Vector2f(futuro.getPosition().x, futuro.getPosition().y - persona->getDeltaY()));//Desfaz o movimento Y
-				if (Colidindo(futuro, (*iterador)->Visual))//Verifica se ainda esta colidindo pelas laterais
-				{
-					(*iterador)->Danar(persona);
-					persona->setDeltaX(-persona->getDeltaX());
-					futuro.setPosition(sf::Vector2f(persona->getX(), futuro.getPosition().y));
-
-				}
-				futuro.setPosition(sf::Vector2f(futuro.getPosition().x - persona->getDeltaX(), futuro.getPosition().y + persona->getDeltaY()));//Desfaz o movimento X e refaz o movimento Y
+				futuro.setPosition(sf::Vector2f(futuro.getPosition().x - persona->getDeltaX(), futuro.getPosition().y));//Desfaz o movimento X
 				if (Colidindo(futuro, (*iterador)->Visual))//Verifica se ainda esta colidindo pelas verticais
 				{
 					persona->setDeltaY(-persona->getDeltaY());
 					if (persona->getDeltaY() > 0) //Se o jogador esta se movendo para baixo
 					{
 						(*iterador)->Danar(persona);
+						futuro.setPosition(sf::Vector2f(futuro.getPosition().x, persona->getY()));
 					}
 					else if (persona->getDeltaY() < 0) //Se o jogador esta se movendo para cima
 					{
 						(*iterador)->receberDano(1);
 						persona->setDeltaY(-16);
+						continue;
 					}
 				}
+				futuro.setPosition(sf::Vector2f(futuro.getPosition().x + persona->getDeltaX(), futuro.getPosition().y - persona->getDeltaY()));//Desfaz o movimento Y e refaz o movimento X
+				if (Colidindo(futuro, (*iterador)->Visual))//Verifica se ainda esta colidindo pelas laterais
+				{
+					(*iterador)->Danar(persona);
+					persona->setDeltaX(-persona->getDeltaX());
+
+				}
+				
 			}
 		}
 	}

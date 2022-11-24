@@ -1,14 +1,17 @@
 #pragma once
 #include "Fase.h"
-class Fase1 :
-    public Fase
+namespace Fases
 {
-protected:
-    void GerarSoldados();
-    void GerarAtiradores();
-    void GerarEspinhos();
-public:
-    Fase1(bool joga_dois);
-    ~Fase1();
-};
+    class Fase1 :
+        public Fase
+    {
+    protected:
+        void GerarSoldados();
+        void GerarAtiradores();
+        void GerarEspinhos();
+    public:
+        Fase1(bool joga_dois);
+        ~Fase1();
+    };
+}
 

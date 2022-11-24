@@ -1,6 +1,6 @@
 #include "Fase1.h"
 
-Fase1::Fase1(bool joga_dois):Fase(joga_dois)
+Fases::Fase1::Fase1(bool joga_dois):Fase(joga_dois)
 {
 	//Posicão inicial dos jogadores
 	jogador1->setX(0);
@@ -44,11 +44,11 @@ Fase1::Fase1(bool joga_dois):Fase(joga_dois)
 	GerarSoldados();
 }
 
-Fase1::~Fase1()
+Fases::Fase1::~Fase1()
 {
 }
 
-void Fase1::GerarSoldados()
+void Fases::Fase1::GerarSoldados()
 {
 	int total = (rand() % 7) + 3;
 	Soldado* solda = nullptr;
@@ -61,7 +61,7 @@ void Fase1::GerarSoldados()
 	}
 }
 
-void Fase1::GerarAtiradores()
+void Fases::Fase1::GerarAtiradores()
 {
 	int total = (rand() % 4) + 3;
 	Atirador* atira = nullptr;
@@ -76,7 +76,7 @@ void Fase1::GerarAtiradores()
 	}
 }
 
-void Fase1::GerarEspinhos()
+void Fases::Fase1::GerarEspinhos()
 {
 	int total = rand() % 8 + 3;
 	int plata = 0;

@@ -2,6 +2,8 @@
 #include "Gerenciador_Grafico.h"
 #include "Menu.h"
 #include "Fase1.h"
+#include "Fase2.h"
+using namespace Fases;
 class Jogo
 {
 private:
@@ -13,6 +15,7 @@ private:
 	Fase* fase;
 public:
 	bool jogando;
+	int level;
 	static Jogo* getInstance();
 	int GetNextFreeID();
 	void Executar();

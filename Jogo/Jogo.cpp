@@ -13,6 +13,7 @@ int main()
 Jogo::Jogo()
 {
 	nextID = 0;
+	level = 0;
 	menu = new Menu();
 	jogando = false;
 	fase = nullptr;
@@ -43,7 +44,7 @@ void Jogo::Executar()
 			if (event.type == sf::Event::Closed)
 				Janela->close();
 		}
-		if (!menu->emFase)
+		if (!menu->getEmFase())
 		{
 			menu->executar();
 		}
@@ -51,12 +52,13 @@ void Jogo::Executar()
 		{
 			if (fase == nullptr)
 			{
-				fase = new Fase1(false);
+				if(menu->getFase() == 1)fase = new Fase1(false);
+				if (menu->getFase() == 2)fase = new Fase2(false);
 			}
 			fase->executar();
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || fase->completa())
 			{
-				menu->emFase = false;
+				menu->setEmFase(false);
 				delete fase;
 				fase = nullptr;
 			}
