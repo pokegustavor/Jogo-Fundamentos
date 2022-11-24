@@ -1,12 +1,17 @@
 #include "Projetil.h"
 
 
-Entidades::Projetil::Projetil(int posX, int posY, int DireX, int DireY) :Entidade(posX, posY), velocidade(20)
+Entidades::Projetil::Projetil(int posX, int posY, int DireX, int DireY) :Entidade(posX, posY), velocidade(8)
 {
 	Visual.setSize(sf::Vector2f(5.f, 5.f));
 	inativo = false;
-	direX = DireX/velocidade;
-	direY = DireY/velocidade;
+	while (abs(DireX) > velocidade || abs(DireY) > velocidade)
+	{
+		DireX /= 2;
+		DireY /= 2;
+	}
+	direX = DireX;
+	direY = DireY;
 }
 
 Entidades::Projetil::~Projetil()
@@ -21,8 +26,13 @@ void Entidades::Projetil::setPostion(int X, int Y)
 
 void Entidades::Projetil::setDirection(int X, int Y)
 {
-	direX = X/velocidade;
-	direY = Y/velocidade;
+	while(abs(X) > velocidade || abs(Y) > velocidade)
+	{
+		X /= 2;
+		Y /= 2;
+	}
+	direX = X;
+	direY = Y;
 }
 
 void Entidades::Projetil::executar()

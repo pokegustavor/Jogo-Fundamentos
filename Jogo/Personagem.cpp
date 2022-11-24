@@ -5,6 +5,7 @@ Entidades::Personagems::Personagem::Personagem(int X, int Y):Entidade(X,Y)
 	vida = 1;
 	morto = false;
 	Visual.setFillColor(sf::Color::Cyan);
+	noChao = false;
 }
 
 Entidades::Personagems::Personagem::~Personagem()
@@ -30,4 +31,19 @@ void Entidades::Personagems::Personagem::receberDano(int valor)
 {
 	vida -= valor;
 	if (vida <= 0)morto = true;
+}
+
+void Entidades::Personagems::Personagem::setChao(bool chao)
+{
+	noChao = chao;
+}
+
+const bool Entidades::Personagems::Personagem::getMorto()
+{
+	return morto;
+}
+
+const int Entidades::Personagems::Personagem::getVidas()
+{
+	return vida;
 }

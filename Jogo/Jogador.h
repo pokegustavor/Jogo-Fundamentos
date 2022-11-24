@@ -1,5 +1,6 @@
 #pragma once
 #include "Personagem.h"
+#include <time.h>
 namespace Entidades
 {
 	namespace Personagems
@@ -8,12 +9,12 @@ namespace Entidades
 		{
 		private:
 			bool jogador_um;
-			bool noChao;
+			clock_t ultimoDano;
 		public:
 			Jogador(bool play_um = true);
 			~Jogador();
 			void executar();
-			void setChao(bool chao);
+			void receberDano(int valor);
 		};
 	}
 }

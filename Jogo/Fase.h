@@ -5,6 +5,8 @@
 #include "Soldado.h"
 #include "Gerenciador_Colisoes.h"
 #include "Plataforma.h"
+#include "Atirador.h"
+#include "Espinho.h"
 using namespace Listas;
 using namespace Entidades::Personagems;
 using namespace Obstaculos;
@@ -42,7 +44,7 @@ public:
 	{
 		grafico->Janela->clear();
 		Iterador<Entidade>iterator;
-		for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); iterator.Next())
+		for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
 		{
 			Entidade* ente = iterator;
 			ente->executar();
@@ -54,15 +56,47 @@ public:
 	{
 		Gerenciador_Colisoes::getInstance()->ColidirInimigos(jogador1);
 		Gerenciador_Colisoes::getInstance()->ColidirObstaculos(jogador1);
+		Gerenciador_Colisoes::getInstance()->ColidirProjetils(jogador1);
 		if(jogador2 != nullptr)
 		{
 			Gerenciador_Colisoes::getInstance()->ColidirInimigos(jogador2);
 			Gerenciador_Colisoes::getInstance()->ColidirObstaculos(jogador2);
+			Gerenciador_Colisoes::getInstance()->ColidirProjetils(jogador2);
+		}
+		Iterador<Entidade>iterator;
+		for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
+		{
+			Entidade* ente = iterator;
+			Inimigo* ini = dynamic_cast<Inimigo*>(ente);
+			if(ini != nullptr)
+			{
+				Gerenciador_Colisoes::getInstance()->ColidirObstaculos(ini);
+			}
 		}
 	};
 	void imprimir()
 	{
+		sf::Font font;
+		font.loadFromFile("arial.ttf");
+		sf::Text text = sf::Text("Vidas: " + std::to_string(jogador1->getVidas()), font, 80);
+		text.setPosition(sf::Vector2f(20, 20));
+		grafico->Janela->draw(text);
 		grafico->Janela->display();
 	};
+	const bool completa()
+	{
+		if(jogador1->getMorto())return true;
+		Iterador<Entidade>iterator;
+		for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
+		{
+			Entidade* ente = iterator;
+			Inimigo* ini = dynamic_cast<Inimigo*>(ente);
+			if (ini != nullptr && !ini->getMorto())
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 };
 

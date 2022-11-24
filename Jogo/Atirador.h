@@ -1,6 +1,7 @@
 #pragma once
 #include "Inimigo.h"
 #include "Projetil.h"
+#include <cmath>
 namespace Entidades
 {
     namespace Personagems

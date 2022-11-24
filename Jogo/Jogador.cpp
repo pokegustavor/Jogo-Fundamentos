@@ -2,10 +2,12 @@
 #include <iostream>
 Entidades::Personagems::Jogador::Jogador(bool play_um):Personagem(50,50)
 {
+    vida = 10;
 	jogador_um = play_um;
     Visual.setSize(sf::Vector2f(20, 20));
     Visual.setFillColor(sf::Color::Red);
     noChao = false;
+    ultimoDano = clock_t();
 }
 
 Entidades::Personagems::Jogador::~Jogador()
@@ -30,9 +32,9 @@ void Entidades::Personagems::Jogador::executar()
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && noChao)
     {
-        deltaY -= 20; //Negativo para cima
+        deltaY -= 22; //Negativo para cima
     }
-    if (!noChao && deltaY <= 6)
+    if (!noChao && deltaY <= 3)
     {
         deltaY+=2;
     }
@@ -41,8 +43,11 @@ void Entidades::Personagems::Jogador::executar()
     if (deltaX < -4)deltaX = -4;
 }
 
-void Entidades::Personagems::Jogador::setChao(bool chao)
+void Entidades::Personagems::Jogador::receberDano(int valor)
 {
-    noChao = chao;
+    clock_t now = clock();
+    if (float(now - ultimoDano) / CLOCKS_PER_SEC < 1)return;
+    vida -= valor;
+    ultimoDano = now;
 }
 

@@ -15,10 +15,12 @@ namespace Listas
 			Elemento(TE* elemento)
 			{
 				pInfo = elemento;
+				pProx = nullptr;
 			}
 			~Elemento()
 			{
-				delete pInfo;
+
+				if(pInfo != NULL)delete pInfo;
 			}
 			TE* getInfo()
 			{
@@ -32,7 +34,9 @@ namespace Listas
 		Lista();
 		~Lista();
 		void Add(TL* info);
+		void AddFront(TL* info);
 		void Remove(TL* info);
+		void Clear();
 		TL* getItem(int pos);
 		TL* getItemByID(int ID);
 		const int Count();
@@ -77,6 +81,22 @@ namespace Listas
 		counter++;
 	}
 	template<class TL>
+	inline void Lista<TL>::AddFront(TL* info)
+	{
+		Elemento<TL>* adiciona = new Elemento<TL>(info);
+		if (pPrimeiro == nullptr)
+		{
+			pPrimeiro = adiciona;
+			pUltimo = adiciona;
+		}
+		else
+		{
+			adiciona->pProx = pPrimeiro;
+			pPrimeiro = adiciona;
+		}
+		counter++;
+	}
+	template<class TL>
 	inline void Lista<TL>::Remove(TL* item)
 	{
 		Elemento<TL>* temp = pPrimeiro;
@@ -102,6 +122,22 @@ namespace Listas
 		}
 		delete temp;
 		counter--;
+	}
+	template<class TL>
+	inline void Lista<TL>::Clear()
+	{
+		if (pPrimeiro != nullptr)
+		{
+			Elemento<TL>* atual = pPrimeiro;
+			Elemento<TL>* prox;
+			while (atual != nullptr)
+			{
+				prox = atual->pProx;
+				delete atual;
+				atual = prox;
+			}
+		}
+		counter = 0;
 	}
 	template<class TL>
 	inline TL* Lista<TL>::getItem(int pos)
@@ -176,6 +212,10 @@ namespace Listas
 			{
 				throw std::out_of_range("out of range");
 			}
+		}
+		void operator++()
+		{
+			_atual++;
 		}
 		const bool isDone()
 		{

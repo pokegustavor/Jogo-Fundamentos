@@ -5,6 +5,7 @@ Jogo* Jogo::_instance = new Jogo();
 Gerenciador_Colisoes* Gerenciador_Colisoes::_instance = new Gerenciador_Colisoes();
 int main()
 {
+	srand(time(0));
 	Jogo::getInstance()->Executar();
 	return 0;
 }
@@ -53,7 +54,7 @@ void Jogo::Executar()
 				fase = new Fase1(false);
 			}
 			fase->executar();
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || fase->completa())
 			{
 				menu->emFase = false;
 				delete fase;
