@@ -7,6 +7,8 @@
 #include "Plataforma.h"
 #include "Atirador.h"
 #include "Espinho.h"
+#include "Colosso.h"
+#include "Caixa.h"
 using namespace Listas;
 using namespace Entidades::Personagems;
 using namespace Obstaculos;
@@ -20,6 +22,7 @@ namespace Fases
 		Jogador* jogador1;
 		Jogador* jogador2;
 		virtual void GerarSoldados() = 0;
+		virtual void GerarPlataformas() = 0;
 	public:
 		Fase(bool dois_joga)
 		{
@@ -35,7 +38,6 @@ namespace Fases
 			{
 				jogador2 = nullptr;
 			}
-
 		};
 		~Fase()
 		{
@@ -99,6 +101,11 @@ namespace Fases
 				}
 			}
 			return true;
+		}
+		void adicionar(Entidade* enti)
+		{
+			Gerenciador_Colisoes::getInstance()->Adicionar(enti);
+			todasEntis->List_Enti->Add(enti);
 		}
 	};
 }

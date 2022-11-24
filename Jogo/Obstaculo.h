@@ -10,11 +10,11 @@ namespace Entidades
 		{
 		protected:
 			bool Danificavel;
-			bool Perigoso;
 		public:
 			Obstaculo(int X, int Y);
 			~Obstaculo();
 			virtual void Danar(Jogador* alvo);
+			const bool getDanifica();
 		};
 	}
 }

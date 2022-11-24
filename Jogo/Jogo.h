@@ -19,4 +19,5 @@ public:
 	static Jogo* getInstance();
 	int GetNextFreeID();
 	void Executar();
+	Fase* getFase();
 };

@@ -4,6 +4,7 @@ Entidades::Personagems::Soldado::Soldado(int X, int Y):Inimigo(X,Y)
 {
     Visual.setSize(sf::Vector2f(20.f, 20.f));
     grau = (rand() % 2) + 1;
+    vida = grau;
 }
 
 Entidades::Personagems::Soldado::~Soldado()

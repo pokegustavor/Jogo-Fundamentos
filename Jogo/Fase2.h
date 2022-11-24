@@ -5,10 +5,13 @@ namespace Fases
     class Fase2 :
         public Fase
     {
-    public:
-        Fase2(bool dois_Joga);
-        ~Fase2();
+    protected:
         void GerarSoldados();
+        void GerarPlataformas();
+    public:
+        Fase2(bool joga_dois);
+        ~Fase2();
+        
     };
 }
 

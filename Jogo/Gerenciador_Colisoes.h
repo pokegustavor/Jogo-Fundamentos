@@ -5,6 +5,7 @@
 #include "Entidade.h"
 #include "Plataforma.h"
 #include "Projetil.h"
+#include "Caixa.h"
 #include <list>
 using namespace std;
 using namespace Entidades::Personagems;
@@ -60,6 +61,11 @@ public:
 			futuro.setPosition(sf::Vector2f(persona->getX() + persona->getDeltaX(), persona->getY() + persona->getDeltaY()));
 			if (Colidindo(futuro, (*iterador)->Visual))//Verifica se existe uma colisão entre a posição futura e o objeto
 			{
+				if(persona->getInvuneravel())
+				{
+					(*iterador)->receberDano(100);
+					continue;
+				}
 				futuro.setPosition(sf::Vector2f(futuro.getPosition().x - persona->getDeltaX(), futuro.getPosition().y));//Desfaz o movimento X
 				if (Colidindo(futuro, (*iterador)->Visual))//Verifica se ainda esta colidindo pelas verticais
 				{
@@ -71,7 +77,7 @@ public:
 					}
 					else if (persona->getDeltaY() < 0) //Se o jogador esta se movendo para cima
 					{
-						(*iterador)->receberDano(1);
+						if(!(*iterador)->getChefao())(*iterador)->receberDano(1);
 						persona->setDeltaY(-16);
 						continue;
 					}
@@ -93,6 +99,15 @@ public:
 		sf::RectangleShape futuro = sf::RectangleShape(sf::Vector2f(persona->Visual.getSize().x, persona->Visual.getSize().y));
 		for (iterador = LOs.begin(); iterador != LOs.end(); ++iterador)
 		{
+			Caixa* caixa = nullptr;
+			if ((*iterador)->getDanifica())
+			{
+				caixa = static_cast<Caixa*>((*iterador));
+				if (caixa != nullptr)
+				{
+					if (caixa->getQuebrada())continue;
+				}
+			}
 			futuro.setPosition(sf::Vector2f(persona->getX() + persona->getDeltaX(), persona->getY() + persona->getDeltaY()));
 			if (Colidindo(futuro, (*iterador)->Visual))//Verifica se existe uma colisão entre a posição futura e o objeto
 			{
@@ -130,8 +145,20 @@ public:
 					}
 					else if (persona->getDeltaY() < 0) //Se o jogador esta se movendo para cima
 					{
-						persona->setY((*iterador)->getY() + (*iterador)->Visual.getSize().y);
-						persona->setDeltaY(0);
+						if((*iterador)->getDanifica())
+						{
+							if (caixa != nullptr)
+							{
+								if (caixa->getItem())persona->invunerar();
+								caixa->quebrar();
+								persona->setDeltaY(0);
+							}
+						}
+						else
+						{
+							persona->setY((*iterador)->getY() + (*iterador)->Visual.getSize().y);
+							persona->setDeltaY(0);
+						}
 					}
 				}
 			}

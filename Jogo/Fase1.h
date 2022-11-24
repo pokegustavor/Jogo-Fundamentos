@@ -7,6 +7,7 @@ namespace Fases
     {
     protected:
         void GerarSoldados();
+        void GerarPlataformas();
         void GerarAtiradores();
         void GerarEspinhos();
     public:

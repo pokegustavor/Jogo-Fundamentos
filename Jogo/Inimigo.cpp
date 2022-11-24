@@ -14,3 +14,8 @@ void Entidades::Personagems::Inimigo::SetAlvo(Jogador* joga)
 {
 	Alvo = joga;
 }
+
+const bool Entidades::Personagems::Inimigo::getChefao()
+{
+	return chefao;
+}

@@ -26,7 +26,10 @@ public:
 
 	}
 	const bool getEmFase() { return emFase; };
-	const bool getFase() { return fase; };
+	const int getFase() 
+	{
+		return fase;
+	};
 	void setEmFase(bool valor) { emFase = valor; };
 	void executar()
 	{

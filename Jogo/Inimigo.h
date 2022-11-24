@@ -16,6 +16,7 @@ namespace Entidades
             ~Inimigo();
             void SetAlvo(Jogador* joga);
             virtual void Danar(Jogador* alvo) = 0;
+            const bool getChefao();
         };
     }
 }

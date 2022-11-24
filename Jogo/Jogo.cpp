@@ -1,6 +1,5 @@
 #include "Jogo.h"
 #include "SFML/Graphics.hpp"
-
 Jogo* Jogo::_instance = new Jogo();
 Gerenciador_Colisoes* Gerenciador_Colisoes::_instance = new Gerenciador_Colisoes();
 int main()
@@ -53,7 +52,7 @@ void Jogo::Executar()
 			if (fase == nullptr)
 			{
 				if(menu->getFase() == 1)fase = new Fase1(false);
-				if (menu->getFase() == 2)fase = new Fase2(false);
+				else if (menu->getFase() == 2)fase = new Fase2(false);
 			}
 			fase->executar();
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || fase->completa())
@@ -64,4 +63,9 @@ void Jogo::Executar()
 			}
 		}
 	}
+}
+
+Fase* Jogo::getFase()
+{
+	return fase;
 }

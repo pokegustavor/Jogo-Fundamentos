@@ -7,7 +7,8 @@ Entidades::Personagems::Jogador::Jogador(bool play_um):Personagem(50,50)
     Visual.setSize(sf::Vector2f(20, 20));
     Visual.setFillColor(sf::Color::Red);
     noChao = false;
-    ultimoDano = clock_t();
+    ultimoDano = clock();
+    ultimoInvune = clock();
 }
 
 Entidades::Personagems::Jogador::~Jogador()
@@ -17,6 +18,8 @@ Entidades::Personagems::Jogador::~Jogador()
 void Entidades::Personagems::Jogador::executar()
 {
     Visual.setFillColor(sf::Color::Blue);
+    clock_t now = clock();
+    if(getInvuneravel())Visual.setFillColor(sf::Color::Yellow);
     Personagem::executar();
     if (deltaX > 0)deltaX--;
     if (deltaX < 0)deltaX++;
@@ -46,8 +49,19 @@ void Entidades::Personagems::Jogador::executar()
 void Entidades::Personagems::Jogador::receberDano(int valor)
 {
     clock_t now = clock();
-    if (float(now - ultimoDano) / CLOCKS_PER_SEC < 1)return;
+    if (float(now - ultimoDano) / CLOCKS_PER_SEC < 1 || getInvuneravel())return;
     vida -= valor;
     ultimoDano = now;
+}
+
+const bool Entidades::Personagems::Jogador::getInvuneravel()
+{
+    clock_t now = clock();
+    return float(now - ultimoInvune) / CLOCKS_PER_SEC < 10;
+}
+
+void Entidades::Personagems::Jogador::invunerar()
+{
+    ultimoInvune = clock();
 }
 

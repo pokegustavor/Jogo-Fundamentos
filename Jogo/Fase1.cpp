@@ -12,30 +12,7 @@ Fases::Fase1::Fase1(bool joga_dois):Fase(joga_dois)
 	}
 
 	//Adicionar Obstaculos
-	Plataforma* plata = new Plataforma(0, 660, 2000, 100);
-	Gerenciador_Colisoes::getInstance()->Adicionar(plata);
-	todasEntis->List_Enti->AddFront(plata);
-	plata = new Plataforma(80, 590, 250, 25);
-	Gerenciador_Colisoes::getInstance()->Adicionar(plata);
-	todasEntis->List_Enti->AddFront(plata);
-	plata = new Plataforma(360, 540, 150, 25);
-	Gerenciador_Colisoes::getInstance()->Adicionar(plata);
-	todasEntis->List_Enti->AddFront(plata);
-	plata = new Plataforma(560, 400, 300, 25,true);
-	Gerenciador_Colisoes::getInstance()->Adicionar(plata);
-	todasEntis->List_Enti->AddFront(plata);
-	plata = new Plataforma(0, 440, 490, 25);
-	Gerenciador_Colisoes::getInstance()->Adicionar(plata);
-	todasEntis->List_Enti->AddFront(plata);
-	plata = new Plataforma(910, 440, 450, 25);
-	Gerenciador_Colisoes::getInstance()->Adicionar(plata);
-	todasEntis->List_Enti->AddFront(plata);
-	plata = new Plataforma(900, 540, 250, 25);
-	Gerenciador_Colisoes::getInstance()->Adicionar(plata);
-	todasEntis->List_Enti->AddFront(plata);
-	plata = new Plataforma(560, 590, 300, 25);
-	Gerenciador_Colisoes::getInstance()->Adicionar(plata);
-	todasEntis->List_Enti->AddFront(plata);
+	GerarPlataformas();
 	GerarEspinhos();
 
 
@@ -56,9 +33,28 @@ void Fases::Fase1::GerarSoldados()
 	{
 		solda = new Soldado((rand() % 800) + 100, (rand() % 220) + 420);
 		solda->SetAlvo(jogador1);
-		Gerenciador_Colisoes::getInstance()->Adicionar(solda);
-		todasEntis->List_Enti->Add(solda);
+		adicionar(solda);
 	}
+}
+
+void Fases::Fase1::GerarPlataformas()
+{
+	Plataforma* plata = new Plataforma(0, 660, 2000, 100);
+	adicionar(plata);
+	plata = new Plataforma(80, 590, 250, 25);
+	adicionar(plata);
+	plata = new Plataforma(360, 540, 150, 25);
+	adicionar(plata);
+	plata = new Plataforma(560, 400, 300, 25, true);
+	adicionar(plata);
+	plata = new Plataforma(0, 440, 490, 25);
+	adicionar(plata);
+	plata = new Plataforma(910, 440, 450, 25);
+	adicionar(plata);
+	plata = new Plataforma(900, 540, 250, 25);
+	adicionar(plata);
+	plata = new Plataforma(560, 590, 300, 25);
+	adicionar(plata);
 }
 
 void Fases::Fase1::GerarAtiradores()
@@ -69,10 +65,8 @@ void Fases::Fase1::GerarAtiradores()
 	{
 		atira = new Atirador((rand() % 500) + 300, (rand() % 220) + 420);
 		atira->SetAlvo(jogador1);
-		Gerenciador_Colisoes::getInstance()->Adicionar(atira);
-		todasEntis->List_Enti->Add(atira);
-		Gerenciador_Colisoes::getInstance()->Adicionar(atira->getProjetil());
-		todasEntis->List_Enti->Add(atira->getProjetil());
+		adicionar(atira);
+		adicionar(atira->getProjetil());
 	}
 }
 
@@ -88,29 +82,20 @@ void Fases::Fase1::GerarEspinhos()
 		{
 		case 0:
 			espin = new Espinho(rand() % 900 + 100, 650);
-			Gerenciador_Colisoes::getInstance()->Adicionar(espin);
-			todasEntis->List_Enti->Add(espin);
 			break;
 		case 1:
 			espin = new Espinho(rand() % 200 + 90, 580);
-			Gerenciador_Colisoes::getInstance()->Adicionar(espin);
-			todasEntis->List_Enti->Add(espin);
 			break;
 		case 2:
 			espin = new Espinho(rand() % 50 + 360, 530);
-			Gerenciador_Colisoes::getInstance()->Adicionar(espin);
-			todasEntis->List_Enti->Add(espin);
 			break;
 		case 3:
 			espin = new Espinho(rand() % 200 + 900, 530);
-			Gerenciador_Colisoes::getInstance()->Adicionar(espin);
-			todasEntis->List_Enti->Add(espin);
 			break;
 		case 4:
 			espin = new Espinho(rand() % 250 + 560, 580);
-			Gerenciador_Colisoes::getInstance()->Adicionar(espin);
-			todasEntis->List_Enti->Add(espin);
 			break;
 		}
+		adicionar(espin);
 	}
 }
