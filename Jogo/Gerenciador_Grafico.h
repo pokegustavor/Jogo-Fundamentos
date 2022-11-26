@@ -22,5 +22,9 @@ public:
 	{
 		return Janela;
 	}
+	void mostarJanela()
+	{
+		Janela->display();
+	}
 };
 

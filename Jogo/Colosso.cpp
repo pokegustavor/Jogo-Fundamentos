@@ -18,7 +18,7 @@ void Entidades::Personagems::Colosso::executar()
 	if (morto)return;
 	Visual.setFillColor(sf::Color::Cyan);
 	Personagem::executar();
-	int tempo = rapido ? 5 : 10;
+	int tempo = rapido ? 2 : 5;
 	clock_t now = clock();
 	float timer = float(now - ultimoSolda) / CLOCKS_PER_SEC;
 	if(timer > tempo)

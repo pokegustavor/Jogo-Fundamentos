@@ -5,7 +5,6 @@ Entidades::Personagems::Jogador::Jogador(bool play_um):Personagem(50,50)
     vida = 10;
 	jogador_um = play_um;
     Visual.setSize(sf::Vector2f(20, 20));
-    Visual.setFillColor(sf::Color::Red);
     noChao = false;
     ultimoDano = clock();
     ultimoInvune = clock();
@@ -17,25 +16,49 @@ Entidades::Personagems::Jogador::~Jogador()
 
 void Entidades::Personagems::Jogador::executar()
 {
-    Visual.setFillColor(sf::Color::Blue);
+    if (morto)return;
+    if(jogador_um)Visual.setFillColor(sf::Color::Blue);
+    else Visual.setFillColor(sf::Color(140,34,245));
     clock_t now = clock();
-    if(getInvuneravel())Visual.setFillColor(sf::Color::Yellow);
+    if (getInvuneravel())
+    {
+        if(jogador_um)Visual.setFillColor(sf::Color::Yellow);
+        else Visual.setFillColor(sf::Color(196, 106, 22));
+    }
     Personagem::executar();
     if (deltaX > 0)deltaX--;
     if (deltaX < 0)deltaX++;
     if (deltaY > 0)deltaY--;
     if (deltaY < 0)deltaY++;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    if (jogador_um)
     {
-        deltaX += 2;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        {
+            deltaX += 2;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        {
+            deltaX -= 2;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && noChao)
+        {
+            deltaY -= 22; //Negativo para cima
+        }
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    else
     {
-        deltaX -= 2;
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && noChao)
-    {
-        deltaY -= 22; //Negativo para cima
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            deltaX += 2;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+            deltaX -= 2;
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && noChao)
+        {
+            deltaY -= 22; //Negativo para cima
+        }
     }
     if (!noChao && deltaY <= 3)
     {

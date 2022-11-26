@@ -95,7 +95,7 @@ void Fases::Fase2::GerarCaixas()
 			caixa = new Caixa((rand() % 520), 390);
 			break;
 		case 4:
-			caixa = new Caixa((rand() % 250) + 550, 320);
+			caixa = new Caixa((rand() % 125) + 775, 320);
 			break;
 		case 5:
 			caixa = new Caixa((rand() % 520) + 830, 340);

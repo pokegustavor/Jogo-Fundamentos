@@ -4,7 +4,7 @@ Entidades::Obstaculos::Caixa::Caixa(int X, int Y):Obstaculo(X,Y)
 {
 	Visual.setSize(sf::Vector2f(15.f, 15.f));
 	Danificavel = true;
-	Tem_Item = true;// rand() % 4 == 0;
+	Tem_Item = rand() % 4 == 0;
 	Quebrada = false;
 }
 Entidades::Obstaculos::Caixa::~Caixa()
@@ -48,7 +48,7 @@ void Entidades::Obstaculos::Caixa::Bloquear(Entidade* enti, Direcao dire)
 		if(joga != nullptr)
 		{
 			Quebrada = true;
-			joga->invunerar();
+			if(Tem_Item)joga->invunerar();
 		}
 		else
 		{

@@ -51,8 +51,8 @@ void Jogo::Executar()
 		{
 			if (fase == nullptr)
 			{
-				if(menu->getFase() == 1)fase = new Fase1(false);
-				else if (menu->getFase() == 2)fase = new Fase2(false);
+				if(menu->getFase() == 1)fase = new Fase1(menu->getDoisJogadores());
+				else if (menu->getFase() == 2)fase = new Fase2(menu->getDoisJogadores());
 			}
 			fase->executar();
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || fase->completa())

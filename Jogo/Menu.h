@@ -12,6 +12,7 @@ private:
 	bool holdingMouse;
 	bool emFase;
 	int fase;
+	bool doisJoga;
 public:
 	Menu()
 	{
@@ -20,6 +21,7 @@ public:
 		graf_iniciado = false;
 		holdingMouse = false;
 		emFase = false;
+		doisJoga = false;
 	}
 	~Menu()
 	{
@@ -49,6 +51,12 @@ public:
 					holdingMouse = true;
 					Menu_Atual = 1;
 				}
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition(*grafico->getJanela()).x > 360.0f && sf::Mouse::getPosition(*grafico->getJanela()).x < 860.0f && sf::Mouse::getPosition(*grafico->getJanela()).y > 300.0f && sf::Mouse::getPosition(*grafico->getJanela()).y < 375.0f)
+				{
+					//Ranking
+					holdingMouse = true;
+					Menu_Atual = 2;
+				}
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition(*grafico->getJanela()).x > 360.0f && sf::Mouse::getPosition(*grafico->getJanela()).x < 860.0f && sf::Mouse::getPosition(*grafico->getJanela()).y > 400.0f && sf::Mouse::getPosition(*grafico->getJanela()).y < 475.0f)
 				{
 					//Sair do jogo
@@ -57,6 +65,12 @@ public:
 				}
 				break;
 			case 1:
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition(*grafico->getJanela()).x > 360.0f && sf::Mouse::getPosition(*grafico->getJanela()).x < 860.0f && sf::Mouse::getPosition(*grafico->getJanela()).y > 100.0f && sf::Mouse::getPosition(*grafico->getJanela()).y < 175.0f)
+				{
+					//Dois Jogadores
+					doisJoga = !doisJoga;
+					holdingMouse = true;
+				}
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition(*grafico->getJanela()).x > 360.0f && sf::Mouse::getPosition(*grafico->getJanela()).x < 860.0f && sf::Mouse::getPosition(*grafico->getJanela()).y > 200.0f && sf::Mouse::getPosition(*grafico->getJanela()).y < 275.0f)
 				{
 					//Fase 1
@@ -72,6 +86,14 @@ public:
 					Menu_Atual = 0;
 				}
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition(*grafico->getJanela()).x > 360.0f && sf::Mouse::getPosition(*grafico->getJanela()).x < 860.0f && sf::Mouse::getPosition(*grafico->getJanela()).y > 400.0f && sf::Mouse::getPosition(*grafico->getJanela()).y < 475.0f)
+				{
+					//Retornar
+					holdingMouse = true;
+					Menu_Atual = 0;
+				}
+				break;
+			case 2:
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && sf::Mouse::getPosition(*grafico->getJanela()).x > 360.0f && sf::Mouse::getPosition(*grafico->getJanela()).x < 860.0f && sf::Mouse::getPosition(*grafico->getJanela()).y > 500.0f && sf::Mouse::getPosition(*grafico->getJanela()).y < 575.0f)
 				{
 					//Retornar
 					holdingMouse = true;
@@ -113,13 +135,13 @@ public:
 			//Titulo
 			title.setOutlineColor(sf::Color::Red);
 			title.setFillColor(sf::Color::Red);
-			title.setPosition(sf::Vector2f(510.0f, 50.0f));
+			title.setPosition(sf::Vector2f(500.0f, 50.0f));
 			grafico->getJanela()->draw(title);
 
 			//Play
 			baseButton.setPosition(sf::Vector2f(360.0f, 200.0f));
 			text.setFillColor(sf::Color::Black);
-			text.setPosition(sf::Vector2f(570.0f, 200.0f));
+			text.setPosition(sf::Vector2f(550.0f, 200.0f));
 			grafico->getJanela()->draw(baseButton);
 			grafico->getJanela()->draw(text);
 
@@ -138,6 +160,21 @@ public:
 			grafico->getJanela()->draw(text);
 			break;
 		case 1:
+			//Dois joga
+			baseButton.setPosition(sf::Vector2f(360.0f, 100.0f));
+			text.setPosition(sf::Vector2f(470.0f, 100.0f));
+			text.setString("2 Jogadores");
+			if(doisJoga)
+			{
+				text.setFillColor(sf::Color::Green);
+			}
+			else
+			{
+				text.setFillColor(sf::Color::Red);
+			}
+			grafico->getJanela()->draw(baseButton);
+			grafico->getJanela()->draw(text);
+
 			//Fase 1
 			baseButton.setPosition(sf::Vector2f(360.0f, 200.0f));
 			text.setFillColor(sf::Color::Black);
@@ -161,8 +198,34 @@ public:
 			grafico->getJanela()->draw(baseButton);
 			grafico->getJanela()->draw(text);
 			break;
+		case 2:
+			text.setFillColor(sf::Color::White);
+			text.setPosition(sf::Vector2f(470.0f, 100.0f));
+			text.setString("1st WIP: 9999");
+			grafico->getJanela()->draw(text);
+			text.setPosition(sf::Vector2f(470.0f, 200.0f));
+			text.setString("2nd WIP: 9999");
+			grafico->getJanela()->draw(text);
+			text.setPosition(sf::Vector2f(470.0f, 300.0f));
+			text.setString("3rd WIP: 9999");
+			grafico->getJanela()->draw(text);
+			text.setPosition(sf::Vector2f(470.0f, 400.0f));
+			text.setString("4th WIP: 9999");
+			grafico->getJanela()->draw(text);
+			text.setFillColor(sf::Color::Black);
+			//Return
+			baseButton.setPosition(sf::Vector2f(360.0f, 500.0f));
+			text.setPosition(sf::Vector2f(535.0f, 500.0f));
+			text.setString("Voltar");
+			grafico->getJanela()->draw(baseButton);
+			grafico->getJanela()->draw(text);
+			break;
 		};
-		grafico->getJanela()->display();
+		grafico->mostarJanela();
 	};
+	const bool getDoisJogadores()
+	{
+		return doisJoga;
+	}
 	sf::RenderWindow* getJanela() { return grafico->getJanela(); };
 };
