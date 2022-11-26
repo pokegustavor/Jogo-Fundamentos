@@ -1,6 +1,6 @@
 #include "Inimigo.h"
 
-Entidades::Personagems::Inimigo::Inimigo(int X, int Y):Personagem(X,Y)
+Entidades::Personagems::Inimigo::Inimigo(const int X,const int Y):Personagem(X,Y)
 {
 	Alvo = nullptr;
 	chefao = false;

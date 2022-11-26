@@ -1,7 +1,7 @@
 #include "Obstaculo.h"
 #include "Gerenciador_Colisoes.h"
 
-Entidades::Obstaculos::Obstaculo::Obstaculo(int X, int Y):Entidade(X,Y)
+Entidades::Obstaculos::Obstaculo::Obstaculo(const int X, const int Y):Entidade(X,Y)
 {
 	Danificavel = false;
 }

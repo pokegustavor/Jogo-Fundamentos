@@ -11,7 +11,7 @@ namespace Fases
         void GerarAtiradores();
         void GerarEspinhos();
     public:
-        Fase1(bool joga_dois);
+        Fase1(const bool joga_dois);
         ~Fase1();
     };
 }

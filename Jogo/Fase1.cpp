@@ -1,6 +1,6 @@
 #include "Fase1.h"
 
-Fases::Fase1::Fase1(bool joga_dois):Fase(joga_dois)
+Fases::Fase1::Fase1(const bool joga_dois):Fase(joga_dois)
 {
 	//Posicão inicial dos jogadores
 	jogador1->setX(0);

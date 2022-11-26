@@ -12,7 +12,7 @@ namespace Entidades
         private:
             int grau;
         public:
-            Soldado(int X, int Y);
+            Soldado(const int X,const int Y);
             ~Soldado();
             void executar();
             void Danar(Jogador* alvo);

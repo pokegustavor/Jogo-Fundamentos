@@ -1,6 +1,6 @@
 #include "Espinho.h"
 
-Entidades::Obstaculos::Espinho::Espinho(int X, int Y):Obstaculo(X,Y)
+Entidades::Obstaculos::Espinho::Espinho(const int X,const int Y):Obstaculo(X,Y)
 {
 	Visual.setSize(sf::Vector2f(20, 20));
 	afiado = rand() % 4 == 0;

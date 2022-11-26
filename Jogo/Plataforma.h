@@ -12,7 +12,7 @@ namespace Entidades
             bool subindo;
             int meio;
         public:
-            Plataforma(int X, int Y, int tamX, int tamY, bool Movel = false);
+            Plataforma(const int X,const int Y,const int tamX,const int tamY,const bool Movel = false);
             ~Plataforma();
             void executar();
             const bool getMovel();

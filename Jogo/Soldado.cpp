@@ -1,6 +1,6 @@
 #include "Soldado.h"
 
-Entidades::Personagems::Soldado::Soldado(int X, int Y):Inimigo(X,Y)
+Entidades::Personagems::Soldado::Soldado(const int X,const int Y):Inimigo(X,Y)
 {
     Visual.setSize(sf::Vector2f(20.f, 20.f));
     grau = (rand() % 2) + 1;

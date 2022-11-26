@@ -11,7 +11,7 @@ namespace Fases
         void GerarColossos();
         void GerarCaixas();
     public:
-        Fase2(bool joga_dois);
+        Fase2(const bool joga_dois);
         ~Fase2();
         
     };

@@ -25,7 +25,7 @@ namespace Fases
 		virtual void GerarSoldados() = 0;
 		virtual void GerarPlataformas() = 0;
 	public:
-		Fase(bool dois_joga)
+		Fase(const bool dois_joga)
 		{
 			todasEntis = new ListaEntidades();
 			jogador1 = new Jogador(true);

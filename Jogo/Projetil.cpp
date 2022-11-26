@@ -1,7 +1,7 @@
 #include "Projetil.h"
 
 
-Entidades::Projetil::Projetil(int posX, int posY, int DireX, int DireY) :Entidade(posX, posY), velocidade(8)
+Entidades::Projetil::Projetil(const int posX,const int posY,int DireX,int DireY) :Entidade(posX, posY), velocidade(8)
 {
 	Visual.setSize(sf::Vector2f(5.f, 5.f));
 	inativo = false;
@@ -18,13 +18,13 @@ Entidades::Projetil::~Projetil()
 {
 }
 
-void Entidades::Projetil::setPostion(int X, int Y)
+void Entidades::Projetil::setPostion(const int X,const int Y)
 {
 	x = X;
 	y = Y;
 }
 
-void Entidades::Projetil::setDirection(int X, int Y)
+void Entidades::Projetil::setDirection(int X,int Y)
 {
 	while(abs(X) > velocidade || abs(Y) > velocidade)
 	{
@@ -45,7 +45,7 @@ void Entidades::Projetil::executar()
 	imprimir();
 }
 
-void Entidades::Projetil::setInativo(bool inatividade)
+void Entidades::Projetil::setInativo(const bool inatividade)
 {
 	inativo = inatividade;
 }

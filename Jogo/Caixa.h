@@ -11,7 +11,7 @@ namespace Entidades
             bool Tem_Item;
             bool Quebrada;
         public:
-            Caixa(int X, int Y);
+            Caixa(const int X, const int Y);
             ~Caixa();
             void executar();
             void quebrar();

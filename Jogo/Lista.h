@@ -37,8 +37,8 @@ namespace Listas
 		void AddFront(TL* info);
 		void Remove(TL* info);
 		void Clear();
-		TL* getItem(int pos);
-		TL* getItemByID(int ID);
+		TL* getItem(const int pos);
+		TL* getItemByID(const int ID);
 		const int Count();
 		Iterador<TL> getIterator();
 	};
@@ -140,7 +140,7 @@ namespace Listas
 		counter = 0;
 	}
 	template<class TL>
-	inline TL* Lista<TL>::getItem(int pos)
+	inline TL* Lista<TL>::getItem(const int pos)
 	{
 		Elemento<TL>* temp = pPrimeiro;
 		if (temp == nullptr)return nullptr;
@@ -156,7 +156,7 @@ namespace Listas
 		return temp->getInfo();
 	}
 	template<class TL>
-	inline TL* Lista<TL>::getItemByID(int ID)
+	inline TL* Lista<TL>::getItemByID(const int ID)
 	{
 		Elemento<TL>* temp = pPrimeiro;
 		if (temp == nullptr)return nullptr;

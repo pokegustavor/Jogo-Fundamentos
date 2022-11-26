@@ -11,7 +11,7 @@ namespace Entidades
 		int deltaX;
 		int deltaY;
 	public:
-		Entidade(int X = 0, int Y = 0);
+		Entidade(const int X = 0, const int Y = 0);
 		~Entidade();
 		virtual void executar() = 0;
 		virtual void imprimir();
@@ -19,10 +19,10 @@ namespace Entidades
 		const int getY();
 		const int getDeltaX();
 		const int getDeltaY();
-		void setX(int X);
-		void setY(int Y);
-		void setDeltaX(int X);
-		void setDeltaY(int Y);
+		void setX(const int X);
+		void setY(const int Y);
+		void setDeltaX(const int X);
+		void setDeltaY(const int Y);
 	};
 }
 

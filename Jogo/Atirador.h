@@ -12,7 +12,7 @@ namespace Entidades
         private:
             Projetil* meu_Projetil;
         public:
-            Atirador(int X, int Y);
+            Atirador(const int X, const int Y);
             ~Atirador();
             void executar();
             Projetil* getProjetil();

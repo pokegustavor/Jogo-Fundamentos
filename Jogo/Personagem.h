@@ -12,11 +12,11 @@ namespace Entidades
             bool morto;
             bool noChao;
         public:
-            Personagem(int X = 0, int Y = 0);
+            Personagem(const int X = 0,const int Y = 0);
             ~Personagem();
             void executar();
-            void receberDano(int valor);
-            void setChao(bool chao);
+            void receberDano(const int valor);
+            void setChao(const bool chao);
             const bool getMorto();
             const int getVidas();
         };

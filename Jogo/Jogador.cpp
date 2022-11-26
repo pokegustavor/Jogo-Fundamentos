@@ -1,6 +1,6 @@
 #include "Jogador.h"
 #include <iostream>
-Entidades::Personagems::Jogador::Jogador(bool play_um):Personagem(50,50)
+Entidades::Personagems::Jogador::Jogador(const bool play_um):Personagem(50,50)
 {
     vida = 10;
 	jogador_um = play_um;
@@ -69,7 +69,7 @@ void Entidades::Personagems::Jogador::executar()
     if (deltaX < -4)deltaX = -4;
 }
 
-void Entidades::Personagems::Jogador::receberDano(int valor)
+void Entidades::Personagems::Jogador::receberDano(const int valor)
 {
     clock_t now = clock();
     if (float(now - ultimoDano) / CLOCKS_PER_SEC < 1 || getInvuneravel())return;

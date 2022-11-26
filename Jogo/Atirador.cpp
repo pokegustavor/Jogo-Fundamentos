@@ -1,6 +1,6 @@
 #include "Atirador.h"
 
-Entidades::Personagems::Atirador::Atirador(int X, int Y):Inimigo(X,Y)
+Entidades::Personagems::Atirador::Atirador(const int X, const int Y):Inimigo(X,Y)
 {
 	Visual.setSize(sf::Vector2f(20.f, 20.f));
 	meu_Projetil = new Projetil(X,Y,0,0);

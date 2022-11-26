@@ -1,6 +1,6 @@
 #include "Personagem.h"
 
-Entidades::Personagems::Personagem::Personagem(int X, int Y):Entidade(X,Y)
+Entidades::Personagems::Personagem::Personagem(const int X,const int Y):Entidade(X,Y)
 {
 	vida = 1;
 	morto = false;
@@ -27,13 +27,13 @@ void Entidades::Personagems::Personagem::executar()
 	imprimir();
 }
 
-void Entidades::Personagems::Personagem::receberDano(int valor)
+void Entidades::Personagems::Personagem::receberDano(const int valor)
 {
 	vida -= valor;
 	if (vida <= 0)morto = true;
 }
 
-void Entidades::Personagems::Personagem::setChao(bool chao)
+void Entidades::Personagems::Personagem::setChao(const bool chao)
 {
 	noChao = chao;
 }

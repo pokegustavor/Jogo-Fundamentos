@@ -10,7 +10,7 @@ namespace Entidades
         private:
             bool afiado;
         public:
-            Espinho(int X, int Y);
+            Espinho(const int X,const int Y);
             ~Espinho();
             void Danar(Jogador* alvo);
             void executar();

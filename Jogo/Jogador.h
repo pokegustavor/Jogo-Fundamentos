@@ -12,10 +12,10 @@ namespace Entidades
 			clock_t ultimoDano;
 			clock_t ultimoInvune;
 		public:
-			Jogador(bool play_um = true);
+			Jogador(const bool play_um = true);
 			~Jogador();
 			void executar();
-			void receberDano(int valor);
+			void receberDano(const int valor);
 			const bool getInvuneravel();
 			void invunerar();
 		};

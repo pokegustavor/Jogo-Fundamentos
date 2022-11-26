@@ -13,7 +13,7 @@ namespace Entidades
             bool rapido;
             clock_t ultimoSolda;
         public:
-            Colosso(int X, int Y);
+            Colosso(const int X,const int Y);
             ~Colosso();
             void executar();
             void Danar(Jogador* alvo);

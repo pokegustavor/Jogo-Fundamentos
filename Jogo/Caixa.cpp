@@ -1,6 +1,6 @@
 #include "Caixa.h"
 
-Entidades::Obstaculos::Caixa::Caixa(int X, int Y):Obstaculo(X,Y)
+Entidades::Obstaculos::Caixa::Caixa(const int X,const int Y):Obstaculo(X,Y)
 {
 	Visual.setSize(sf::Vector2f(15.f, 15.f));
 	Danificavel = true;

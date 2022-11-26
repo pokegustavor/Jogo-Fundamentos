@@ -32,7 +32,7 @@ public:
 	{
 		return fase;
 	};
-	void setEmFase(bool valor) { emFase = valor; };
+	void setEmFase(const bool valor) { emFase = valor; };
 	void executar()
 	{
 		if (!graf_iniciado)

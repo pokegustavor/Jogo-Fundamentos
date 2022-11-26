@@ -1,5 +1,5 @@
 #include "Entidade.h"
-Entidades::Entidade::Entidade(int X,int Y)
+Entidades::Entidade::Entidade(const int X,const int Y)
 {
 	id = -1;
 	x = X;
@@ -38,22 +38,22 @@ const int Entidades::Entidade::getDeltaY()
 	return deltaY;
 }
 
-void Entidades::Entidade::setX(int X)
+void Entidades::Entidade::setX(const int X)
 {
 	x = X;
 }
 
-void Entidades::Entidade::setY(int Y)
+void Entidades::Entidade::setY(const int Y)
 {
 	y = Y;
 }
 
-void Entidades::Entidade::setDeltaX(int X)
+void Entidades::Entidade::setDeltaX(const int X)
 {
 	deltaX = X;
 }
 
-void Entidades::Entidade::setDeltaY(int Y)
+void Entidades::Entidade::setDeltaY(const int Y)
 {
 	deltaY = Y;
 }

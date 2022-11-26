@@ -11,12 +11,12 @@ namespace Entidades
         bool inativo;
         const int velocidade;
     public:
-        Projetil(int posX, int posY, int DireX, int DireY);
+        Projetil(const int posX,const int posY, int DireX, int DireY);
         ~Projetil();
-        void setPostion(int X, int Y);
-        void setDirection(int X, int Y);
+        void setPostion(const int X,const int Y);
+        void setDirection(int X,int Y);
         void executar();
-        void setInativo(bool inatividade);
+        void setInativo(const bool inatividade);
         bool getInativo();
 
     };

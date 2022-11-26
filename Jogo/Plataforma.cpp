@@ -1,6 +1,6 @@
 #include "Plataforma.h"
 
-Entidades::Obstaculos::Plataforma::Plataforma(int X, int Y, int tamX, int tamY, bool Movel):Obstaculo(X,Y)
+Entidades::Obstaculos::Plataforma::Plataforma(const int X,const int Y,const int tamX,const int tamY,const bool Movel):Obstaculo(X,Y)
 {
 	Visual.setSize(sf::Vector2f(tamX, tamY));
 	movel = Movel;
@@ -41,7 +41,7 @@ const bool Entidades::Obstaculos::Plataforma::getSubindo()
 	return subindo;
 }
 
-void Entidades::Obstaculos::Plataforma::Bloquear(Entidade* enti, Direcao dire)
+void Entidades::Obstaculos::Plataforma::Bloquear(Entidade* enti, const Direcao dire)
 {
 	Personagem* persona = dynamic_cast<Personagem*>(enti);
 	switch (dire)

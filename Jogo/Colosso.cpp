@@ -1,7 +1,7 @@
 #include "Colosso.h"
 #include "Jogo.h"
 
-Entidades::Personagems::Colosso::Colosso(int X, int Y):Inimigo(X,Y)
+Entidades::Personagems::Colosso::Colosso(const int X,const int Y):Inimigo(X,Y)
 {
 	ultimoSolda = clock();
 	chefao = true;
