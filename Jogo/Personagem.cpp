@@ -30,7 +30,11 @@ void Entidades::Personagems::Personagem::executar()
 void Entidades::Personagems::Personagem::receberDano(const int valor)
 {
 	vida -= valor;
-	if (vida <= 0)morto = true;
+	if (vida <= 0)
+	{
+		vida = 0;
+		morto = true;
+	}
 }
 
 void Entidades::Personagems::Personagem::setChao(const bool chao)
