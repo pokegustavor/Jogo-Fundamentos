@@ -7,6 +7,7 @@
 #include "Projetil.h"
 #include "Caixa.h"
 #include <list>
+#include <stack>
 using namespace std;
 using namespace Entidades::Personagems;
 using namespace Entidades::Obstaculos;
@@ -16,7 +17,7 @@ class Gerenciador_Colisoes
 private:
 	vector<Inimigo*> LIs;
 	list<Obstaculo*> LOs;
-	list<Projetil*> PRs;
+	stack<Projetil*> PRs;
 	static Gerenciador_Colisoes* _instance;
 	Gerenciador_Colisoes() :LIs(), LOs(), PRs()
 	{
@@ -245,16 +246,18 @@ public:
 	}
 	void ColidirProjetils(Jogador* persona)
 	{
-		list<Projetil*>::iterator iterator;
-		for(iterator = PRs.begin(); iterator != PRs.end(); ++iterator)
+		stack<Projetil*> copy = PRs;
+		while(!PRs.empty())
 		{
-			Projetil* proj = *iterator;
-			if(!proj->getInativo() && Colidindo(persona->Visual,proj->Visual))
+			Projetil* proj = PRs.top();
+			if (!proj->getInativo() && Colidindo(persona->Visual, proj->Visual))
 			{
 				persona->receberDano(1);
 				proj->setInativo(true);
 			}
+			PRs.pop();
 		}
+		PRs = copy;
 	}
 	
 	void Adicionar(Entidade* enti)
@@ -272,14 +275,14 @@ public:
 		}
 		else if (proj != nullptr)
 		{
-			PRs.push_back(proj);
+			PRs.push(proj);
 		}
 	}
 	void Limpar()
 	{
 		LOs.clear();
 		LIs.clear();
-		PRs.clear();
+		PRs = stack<Projetil*>();
 	}
 };
 
