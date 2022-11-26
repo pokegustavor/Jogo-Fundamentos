@@ -1,6 +1,6 @@
 #include "Fase2.h"
 
-Fases::Fase2::Fase2(bool joga_dois):Fase(joga_dois)
+Fases::Fase2::Fase2(bool joga_dois) :Fase(joga_dois)
 {
 	//Posicão inicial dos jogadores
 	jogador1->setX(0);
@@ -13,17 +13,11 @@ Fases::Fase2::Fase2(bool joga_dois):Fase(joga_dois)
 
 	//Adicionar Obstaculos
 	GerarPlataformas();
-	Caixa* cai = new Caixa(40, 600);
-	adicionar(cai);
+	GerarCaixas();
 
 	//Adicionar Inimigos
-	Colosso* colo = new Colosso(880, 300);
-	colo->SetAlvo(jogador1);
-	adicionar(colo);
-	Atirador* atira = new Atirador(800, 640);
-	atira->SetAlvo(jogador1);
-	Gerenciador_Colisoes::getInstance()->Adicionar(atira);
-	todasEntis->List_Enti->AddFront(atira);
+	GerarSoldados();
+	GerarColossos();
 }
 
 Fases::Fase2::~Fase2()
@@ -32,6 +26,14 @@ Fases::Fase2::~Fase2()
 
 void Fases::Fase2::GerarSoldados()
 {
+	int total = (rand() % 7) + 3;
+	Soldado* solda = nullptr;
+	for (int i = 0; i <= total; i++)
+	{
+		solda = new Soldado((rand() % 600) + 300, (rand() % 220) + 420);
+		solda->SetAlvo(jogador1);
+		adicionar(solda);
+	}
 }
 
 void Fases::Fase2::GerarPlataformas()
@@ -56,4 +58,55 @@ void Fases::Fase2::GerarPlataformas()
 	adicionar(plata);
 	plata = new Plataforma(830, 180, 600, 25);
 	adicionar(plata);
+}
+
+void Fases::Fase2::GerarColossos()
+{
+	int total = (rand() % 3) + 3;
+	Colosso* colo = nullptr;
+	for (int i = 0; i <= total; i++)
+	{
+		colo = new Colosso((rand() % 600) + 680, (rand() % 640));
+		colo->SetAlvo(jogador1);
+		adicionar(colo);
+	}
+}
+
+void Fases::Fase2::GerarCaixas()
+{
+	int total = (rand() % 9) + 8;
+	int plata = 0;
+	Caixa* caixa = nullptr;
+	for (int i = 0; i < total; i++)
+	{
+		plata = rand() % 8;
+		switch (plata)
+		{
+		case 0:
+			caixa = new Caixa((rand() % 450) + 80, 530);
+			break;
+		case 1:
+			caixa = new Caixa((rand() % 250) + 550,460);
+			break;
+		case 2:
+			caixa = new Caixa((rand() % 350) + 820, 530);
+			break;
+		case 3:
+			caixa = new Caixa((rand() % 520), 390);
+			break;
+		case 4:
+			caixa = new Caixa((rand() % 250) + 550, 320);
+			break;
+		case 5:
+			caixa = new Caixa((rand() % 520) + 830, 340);
+			break;
+		case 6:
+			caixa = new Caixa((rand() % 600) + 30, 250);
+			break;
+		case 7:
+			caixa = new Caixa((rand() % 600) + 830, 120);
+			break;
+		}
+		adicionar(caixa);
+	}
 }

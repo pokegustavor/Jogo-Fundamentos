@@ -3,8 +3,8 @@
 class Gerenciador_Grafico
 {
 private:
-public:
 	sf::RenderWindow* Janela;
+public:
 	Gerenciador_Grafico()
 	{
 		Janela = nullptr;
@@ -17,6 +17,10 @@ public:
 	{
         Janela = new sf::RenderWindow(sf::VideoMode(1280, 720), "Jogo!", sf::Style::Titlebar | sf::Style::Close);
 		Janela->setFramerateLimit(60);
+	}
+	sf::RenderWindow* getJanela()
+	{
+		return Janela;
 	}
 };
 

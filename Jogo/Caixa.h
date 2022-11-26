@@ -17,6 +17,7 @@ namespace Entidades
             void quebrar();
             const bool getItem();
             const bool getQuebrada();
+            void Bloquear(Entidade* enti, Direcao dire);
         };
     }
 }

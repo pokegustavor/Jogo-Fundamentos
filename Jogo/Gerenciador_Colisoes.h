@@ -11,7 +11,6 @@ using namespace std;
 using namespace Entidades::Personagems;
 using namespace Entidades::Obstaculos;
 using namespace Entidades;
-using namespace Listas;
 class Gerenciador_Colisoes
 {
 private:
@@ -93,83 +92,13 @@ public:
 			}
 		}
 	}
-	void ColidirObstaculos(Jogador* persona)
+	void ColidirInimigos(Inimigo* inimi)
 	{
-		list<Obstaculo*>::iterator iterador;
-		sf::RectangleShape futuro = sf::RectangleShape(sf::Vector2f(persona->Visual.getSize().x, persona->Visual.getSize().y));
-		for (iterador = LOs.begin(); iterador != LOs.end(); ++iterador)
-		{
-			Caixa* caixa = nullptr;
-			if ((*iterador)->getDanifica())
-			{
-				caixa = static_cast<Caixa*>((*iterador));
-				if (caixa != nullptr)
-				{
-					if (caixa->getQuebrada())continue;
-				}
-			}
-			futuro.setPosition(sf::Vector2f(persona->getX() + persona->getDeltaX(), persona->getY() + persona->getDeltaY()));
-			if (Colidindo(futuro, (*iterador)->Visual))//Verifica se existe uma colisão entre a posição futura e o objeto
-			{
-				(*iterador)->Danar(persona);
-				int extra = 0;
-				Plataforma* plata = dynamic_cast<Plataforma*>((*iterador));
-				if (plata != nullptr && plata->getMovel() && plata->getSubindo())
-				{
-					extra = 2;
-				}
-				futuro.setPosition(sf::Vector2f(futuro.getPosition().x, futuro.getPosition().y - persona->getDeltaY() - extra));//Desfaz o movimento Y
-				if (Colidindo(futuro, (*iterador)->Visual))//Verifica se ainda esta colidindo pelas laterais
-				{
-					if (persona->getDeltaX() > 0) //Se o jogador esta se movendo para direita
-					{
-						persona->setX((*iterador)->getX() - persona->Visual.getSize().x);
-						persona->setDeltaX(0);
-						futuro.setPosition(sf::Vector2f(persona->getX(), futuro.getPosition().y));
-					}
-					else if (persona->getDeltaX() < 0) //Se o jogador esta se movendo para esquerda
-					{
-						persona->setX((*iterador)->getX() + (*iterador)->Visual.getSize().x);
-						persona->setDeltaX(0);
-						futuro.setPosition(sf::Vector2f(persona->getX(), futuro.getPosition().y));
-					}
-				}
-				futuro.setPosition(sf::Vector2f(futuro.getPosition().x - persona->getDeltaX(), futuro.getPosition().y + persona->getDeltaY()));//Desfaz o movimento X e refaz o movimento Y
-				if (Colidindo(futuro, (*iterador)->Visual))//Verifica se ainda esta colidindo pelas verticais
-				{
-					if (persona->getDeltaY() > 0) //Se o jogador esta se movendo para baixo
-					{
-						persona->setY((*iterador)->getY() - persona->Visual.getSize().y);
-						persona->setDeltaY(0);
-						persona->setChao(true);
-					}
-					else if (persona->getDeltaY() < 0) //Se o jogador esta se movendo para cima
-					{
-						if((*iterador)->getDanifica())
-						{
-							if (caixa != nullptr)
-							{
-								if (caixa->getItem())persona->invunerar();
-								caixa->quebrar();
-								persona->setDeltaY(0);
-							}
-						}
-						else
-						{
-							persona->setY((*iterador)->getY() + (*iterador)->Visual.getSize().y);
-							persona->setDeltaY(0);
-						}
-					}
-				}
-			}
-		}
-	}
-	void ColidirObstaculos(Inimigo* inimi)
-	{
-		list<Obstaculo*>::iterator iterador;
+		vector<Inimigo*>::iterator iterador;
 		sf::RectangleShape futuro = sf::RectangleShape(sf::Vector2f(inimi->Visual.getSize().x, inimi->Visual.getSize().y));
-		for (iterador = LOs.begin(); iterador != LOs.end(); ++iterador)
+		for (iterador = LIs.begin(); iterador != LIs.end(); ++iterador)
 		{
+			if ((*iterador) == inimi || (*iterador)->getMorto())continue;
 			futuro.setPosition(sf::Vector2f(inimi->getX() + inimi->getDeltaX(), inimi->getY() + inimi->getDeltaY()));
 			if (Colidindo(futuro, (*iterador)->Visual))//Verifica se existe uma colisão entre a posição futura e o objeto
 			{
@@ -207,6 +136,113 @@ public:
 			}
 		}
 	}
+	void ColidirObstaculos(Jogador* persona)
+	{
+		list<Obstaculo*>::iterator iterador;
+		sf::RectangleShape futuro = sf::RectangleShape(sf::Vector2f(persona->Visual.getSize().x, persona->Visual.getSize().y));
+		for (iterador = LOs.begin(); iterador != LOs.end(); ++iterador)
+		{
+			Caixa* caixa = nullptr;
+			if ((*iterador)->getDanifica())
+			{
+				caixa = static_cast<Caixa*>((*iterador));
+				if (caixa != nullptr)
+				{
+					if (caixa->getQuebrada())continue;
+				}
+			}
+			futuro.setPosition(sf::Vector2f(persona->getX() + persona->getDeltaX(), persona->getY() + persona->getDeltaY()));
+			if (Colidindo(futuro, (*iterador)->Visual))//Verifica se existe uma colisão entre a posição futura e o objeto
+			{
+				(*iterador)->Danar(persona);
+				int extra = 0;
+				Plataforma* plata = dynamic_cast<Plataforma*>((*iterador));
+				if (plata != nullptr && plata->getMovel() && plata->getSubindo())
+				{
+					extra = 2;
+				}
+				futuro.setPosition(sf::Vector2f(futuro.getPosition().x, futuro.getPosition().y - persona->getDeltaY() - extra));//Desfaz o movimento Y
+				if (Colidindo(futuro, (*iterador)->Visual))//Verifica se ainda esta colidindo pelas laterais
+				{
+					if (persona->getDeltaX() > 0) //Se o jogador esta se movendo para direita
+					{
+						(*iterador)->Bloquear(persona, Esquerda);
+						futuro.setPosition(sf::Vector2f(persona->getX(), futuro.getPosition().y));
+					}
+					else if (persona->getDeltaX() < 0) //Se o jogador esta se movendo para esquerda
+					{
+						(*iterador)->Bloquear(persona, Direita);
+						futuro.setPosition(sf::Vector2f(persona->getX(), futuro.getPosition().y));
+					}
+				}
+				futuro.setPosition(sf::Vector2f(futuro.getPosition().x - persona->getDeltaX(), futuro.getPosition().y + persona->getDeltaY()));//Desfaz o movimento X e refaz o movimento Y
+				if (Colidindo(futuro, (*iterador)->Visual))//Verifica se ainda esta colidindo pelas verticais
+				{
+					if (persona->getDeltaY() > 0) //Se o jogador esta se movendo para baixo
+					{
+						(*iterador)->Bloquear(persona, Cima);
+					}
+					else if (persona->getDeltaY() < 0) //Se o jogador esta se movendo para cima
+					{
+						(*iterador)->Bloquear(persona, Baixo);
+					}
+				}
+			}
+		}
+	}
+	void ColidirObstaculos(Inimigo* inimi)
+	{
+		list<Obstaculo*>::iterator iterador;
+		sf::RectangleShape futuro = sf::RectangleShape(sf::Vector2f(inimi->Visual.getSize().x, inimi->Visual.getSize().y));
+		for (iterador = LOs.begin(); iterador != LOs.end(); ++iterador)
+		{
+			Caixa* caixa = nullptr;
+			if ((*iterador)->getDanifica())
+			{
+				caixa = static_cast<Caixa*>((*iterador));
+				if (caixa != nullptr)
+				{
+					if (caixa->getQuebrada())continue;
+				}
+			}
+			futuro.setPosition(sf::Vector2f(inimi->getX() + inimi->getDeltaX(), inimi->getY() + inimi->getDeltaY()));
+			if (Colidindo(futuro, (*iterador)->Visual))//Verifica se existe uma colisão entre a posição futura e o objeto
+			{
+				int extra = 0;
+				Plataforma* plata = dynamic_cast<Plataforma*>((*iterador));
+				if (plata != nullptr && plata->getMovel() && plata->getSubindo())
+				{
+					extra = 2;
+				}
+				futuro.setPosition(sf::Vector2f(futuro.getPosition().x, futuro.getPosition().y - inimi->getDeltaY() - extra));//Desfaz o movimento Y
+				if (Colidindo(futuro, (*iterador)->Visual))//Verifica se ainda esta colidindo pelas laterais
+				{
+					if (inimi->getDeltaX() > 0) //Se o jogador esta se movendo para direita
+					{
+						(*iterador)->Bloquear(inimi, Esquerda);
+						futuro.setPosition(sf::Vector2f(inimi->getX(), futuro.getPosition().y));
+					}
+					else if (inimi->getDeltaX() < 0) //Se o jogador esta se movendo para esquerda
+					{
+						(*iterador)->Bloquear(inimi, Direita);
+						futuro.setPosition(sf::Vector2f(inimi->getX(), futuro.getPosition().y));
+					}
+				}
+				futuro.setPosition(sf::Vector2f(futuro.getPosition().x - inimi->getDeltaX(), futuro.getPosition().y + inimi->getDeltaY()));//Desfaz o movimento X e refaz o movimento Y
+				if (Colidindo(futuro, (*iterador)->Visual))//Verifica se ainda esta colidindo pelas verticais
+				{
+					if (inimi->getDeltaY() > 0) //Se o jogador esta se movendo para baixo
+					{
+						(*iterador)->Bloquear(inimi, Cima);
+					}
+					else if (inimi->getDeltaY() < 0) //Se o jogador esta se movendo para cima
+					{
+						(*iterador)->Bloquear(inimi, Baixo);
+					}
+				}
+			}
+		}
+	}
 	void ColidirProjetils(Jogador* persona)
 	{
 		list<Projetil*>::iterator iterator;
@@ -220,6 +256,7 @@ public:
 			}
 		}
 	}
+	
 	void Adicionar(Entidade* enti)
 	{
 		Obstaculo* obst = dynamic_cast<Obstaculo*>(enti);

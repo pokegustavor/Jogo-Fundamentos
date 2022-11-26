@@ -41,7 +41,7 @@ void Entidades::Projetil::executar()
 	Visual.setFillColor(sf::Color::White);
 	x += direX;
 	y += direY;
-	if (x < 0 || y < 0 || x > grafico->Janela->getSize().x || y > grafico->Janela->getSize().y)inativo = true;
+	if (x < 0 || y < 0 || x > grafico->getJanela()->getSize().x || y > grafico->getJanela()->getSize().y)inativo = true;
 	imprimir();
 }
 

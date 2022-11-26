@@ -4,6 +4,7 @@
 using namespace Entidades::Personagems;
 namespace Entidades
 {
+	enum Direcao { Cima, Baixo, Esquerda, Direita };
 	namespace Obstaculos
 	{
 		class Obstaculo : public Entidade
@@ -15,6 +16,7 @@ namespace Entidades
 			~Obstaculo();
 			virtual void Danar(Jogador* alvo);
 			const bool getDanifica();
+			virtual void Bloquear(Entidade* enti, Direcao dire) = 0;
 		};
 	}
 }

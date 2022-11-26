@@ -40,3 +40,29 @@ const bool Entidades::Obstaculos::Plataforma::getSubindo()
 {
 	return subindo;
 }
+
+void Entidades::Obstaculos::Plataforma::Bloquear(Entidade* enti, Direcao dire)
+{
+	Personagem* persona = dynamic_cast<Personagem*>(enti);
+	switch (dire)
+	{
+	case Cima:
+		enti->setY(y - enti->Visual.getSize().y);
+		if(movel && subindo)enti->setDeltaY(-1);
+		else enti->setDeltaY(0);
+		if(persona != nullptr)persona->setChao(true);
+		break;
+	case Baixo:
+		enti->setY(y + Visual.getSize().y);
+		enti->setDeltaY(0);
+		break;
+	case Direita:
+		enti->setX(x + Visual.getSize().x);
+		enti->setDeltaX(0);
+		break;
+	case Esquerda:
+		enti->setX(x - enti->Visual.getSize().x);
+		enti->setDeltaX(0);
+		break;
+	}
+}

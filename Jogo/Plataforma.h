@@ -17,6 +17,7 @@ namespace Entidades
             void executar();
             const bool getMovel();
             const bool getSubindo();
+            void Bloquear(Entidade* enti, Direcao dire);
         };
     }
 }

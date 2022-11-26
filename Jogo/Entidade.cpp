@@ -15,7 +15,7 @@ Entidades::Entidade::~Entidade()
 void Entidades::Entidade::imprimir()
 {
 	Visual.setPosition(sf::Vector2f((float)x, (float)y));
-	grafico->Janela->draw(Visual);
+	grafico->getJanela()->draw(Visual);
 }
 
 const int Entidades::Entidade::getX()

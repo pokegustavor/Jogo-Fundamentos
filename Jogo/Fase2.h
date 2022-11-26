@@ -8,6 +8,8 @@ namespace Fases
     protected:
         void GerarSoldados();
         void GerarPlataformas();
+        void GerarColossos();
+        void GerarCaixas();
     public:
         Fase2(bool joga_dois);
         ~Fase2();

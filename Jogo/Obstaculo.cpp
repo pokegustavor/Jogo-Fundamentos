@@ -1,4 +1,5 @@
 #include "Obstaculo.h"
+#include "Gerenciador_Colisoes.h"
 
 Entidades::Obstaculos::Obstaculo::Obstaculo(int X, int Y):Entidade(X,Y)
 {

@@ -14,6 +14,7 @@ namespace Entidades
             ~Espinho();
             void Danar(Jogador* alvo);
             void executar();
+            void Bloquear(Entidade* enti, Direcao dire);
         };
     }
 }

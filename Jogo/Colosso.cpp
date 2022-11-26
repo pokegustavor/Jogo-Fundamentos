@@ -23,7 +23,7 @@ void Entidades::Personagems::Colosso::executar()
 	float timer = float(now - ultimoSolda) / CLOCKS_PER_SEC;
 	if(timer > tempo)
 	{
-		Soldado* solda = new Soldado(x, y);
+		Soldado* solda = new Soldado(x, y-20);
 		solda->SetAlvo(Alvo);
 		Jogo::getInstance()->getFase()->adicionar(solda);
 		ultimoSolda = now;

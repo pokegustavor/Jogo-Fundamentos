@@ -46,13 +46,8 @@ namespace Fases
 		};
 		void executar()
 		{
-			grafico->Janela->clear();
-			Iterador<Entidade>iterator;
-			for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
-			{
-				Entidade* ente = iterator;
-				ente->executar();
-			}
+			grafico->getJanela()->clear();
+			todasEntis->executar();
 			gerenciar_colisoes();
 			imprimir();
 		};
@@ -72,9 +67,10 @@ namespace Fases
 			{
 				Entidade* ente = iterator;
 				Inimigo* ini = dynamic_cast<Inimigo*>(ente);
-				if (ini != nullptr)
+				if (ini != nullptr && !ini->getMorto())
 				{
 					Gerenciador_Colisoes::getInstance()->ColidirObstaculos(ini);
+					Gerenciador_Colisoes::getInstance()->ColidirInimigos(ini);
 				}
 			}
 		};
@@ -84,23 +80,13 @@ namespace Fases
 			font.loadFromFile("arial.ttf");
 			sf::Text text = sf::Text("Vidas: " + std::to_string(jogador1->getVidas()), font, 80);
 			text.setPosition(sf::Vector2f(20, 20));
-			grafico->Janela->draw(text);
-			grafico->Janela->display();
+			grafico->getJanela()->draw(text);
+			grafico->getJanela()->display();
 		};
 		const bool completa()
 		{
 			if (jogador1->getMorto())return true;
-			Iterador<Entidade>iterator;
-			for (iterator = todasEntis->List_Enti->getIterator(); !iterator.isDone(); ++iterator)
-			{
-				Entidade* ente = iterator;
-				Inimigo* ini = dynamic_cast<Inimigo*>(ente);
-				if (ini != nullptr && !ini->getMorto())
-				{
-					return false;
-				}
-			}
-			return true;
+			return todasEntis->temInimigo();
 		}
 		void adicionar(Entidade* enti)
 		{
