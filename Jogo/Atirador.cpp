@@ -16,11 +16,21 @@ void Entidades::Personagems::Atirador::executar()
 	if (morto)return;
 	Visual.setFillColor(sf::Color::Magenta);
 	Personagem::executar();
-	if(meu_Projetil != nullptr && meu_Projetil->getInativo() && abs(Alvo->getX() - x) < 200 && abs(Alvo->getY() - y) < 150)
+	try
 	{
-		meu_Projetil->setPostion(x + Visual.getSize().x/2,y + Visual.getSize().y/2);
-		meu_Projetil->setDirection(((Alvo->getX() + Visual.getSize().x / 2) - (x + Visual.getSize().x / 2)), ((Alvo->getY() + Visual.getSize().y / 2) - (y + Visual.getSize().y / 2)));
-		meu_Projetil->setInativo(false);
+		if (meu_Projetil != nullptr && meu_Projetil->getInativo() && abs(Alvo->getX() - x) < 200 && abs(Alvo->getY() - y) < 150)
+		{
+			meu_Projetil->setPostion(x + Visual.getSize().x / 2, y + Visual.getSize().y / 2);
+			meu_Projetil->setDirection(((Alvo->getX() + Visual.getSize().x / 2) - (x + Visual.getSize().x / 2)), ((Alvo->getY() + Visual.getSize().y / 2) - (y + Visual.getSize().y / 2)));
+			meu_Projetil->setInativo(false);
+		}
+	}
+	catch(int*)
+	{
+		if(meu_Projetil != nullptr)
+		{
+			meu_Projetil->setInativo(true);
+		}
 	}
 	if (!noChao && deltaY <= 3)
 	{
