@@ -15,7 +15,7 @@ public:
 	}
 	void Iniciar()
 	{
-        Janela = new sf::RenderWindow(sf::VideoMode(1280, 720), "Jogo!", sf::Style::Titlebar | sf::Style::Close);
+        Janela = new sf::RenderWindow(sf::VideoMode(1280, 720), "Combatente--", sf::Style::Titlebar | sf::Style::Close);
 		Janela->setFramerateLimit(60);
 	}
 	sf::RenderWindow* getJanela()

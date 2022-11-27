@@ -122,7 +122,7 @@ public:
 		grafico->getJanela()->draw(background);
 		sf::Font font;
 		font.loadFromFile("arial.ttf");
-		sf::Text title = sf::Text("Jogo", font, 100);
+		sf::Text title = sf::Text("Combatente--", font, 100);
 		sf::RectangleShape baseButton = sf::RectangleShape(sf::Vector2f(500.0f, 75.0f));
 		sf::Text text = sf::Text("Jogar", font, 50);
 		sf::RectangleShape button = sf::RectangleShape(sf::Vector2f(100.0f, 100.0f));
@@ -135,7 +135,7 @@ public:
 			//Titulo
 			title.setOutlineColor(sf::Color::Red);
 			title.setFillColor(sf::Color::Red);
-			title.setPosition(sf::Vector2f(500.0f, 50.0f));
+			title.setPosition(sf::Vector2f(315.0f, 50.0f));
 			grafico->getJanela()->draw(title);
 
 			//Play
