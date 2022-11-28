@@ -3,6 +3,7 @@
 #include "Menu.h"
 #include "Fase1.h"
 #include "Fase2.h"
+using namespace Gerenciadores;
 using namespace Fases;
 class Jogo
 {

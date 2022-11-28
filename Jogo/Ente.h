@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Gerenciador_Grafico.h"
+using namespace Gerenciadores;
 class Ente
 {
 protected:
